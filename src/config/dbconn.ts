@@ -1,9 +1,5 @@
 import { Sequelize } from "sequelize";
-const sequelize=new Sequelize("test",'root',"Fanelu2002!",{
-            host:"localhost",
-            dialect:"mysql",
-            port:4000
-        });
+const sequelize=new Sequelize("mysql://root:Fanelu2002!@localhost:4000/test");
 export default sequelize;
         
 

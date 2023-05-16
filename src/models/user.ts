@@ -11,4 +11,4 @@ const Users=sequelize.define('Users',{
         allowNull:false,
     }
 });
-export default Users;
+export default  Users;

@@ -3,6 +3,7 @@ import morgan from "morgan"
 import sequelize from "./config/db-config";
 import Users from "./models/user";
  const app=express();
+ const UserModel=new Users();
 app.use(morgan('tiny'));
 sequelize.authenticate().then(async ()=>{
     console.log('authenticated');
