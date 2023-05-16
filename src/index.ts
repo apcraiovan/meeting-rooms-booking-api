@@ -1,10 +1,10 @@
-const express = require("express");
-const morgan = require("morgan");
+import express from "express"
+import morgan from "morgan"
 import sequelize from "./config/db-config";
 import Rooms from "./models/rooms";
 
 const app = express();
-const RoomsModel = new Rooms();
+//const RoomsModel = new Rooms();
 
 app.use(morgan("tiny"));
 
