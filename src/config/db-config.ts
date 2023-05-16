@@ -1,7 +1,5 @@
-module.exports = {
-  HOST: "localhost",
-  USER: "root",
-  PASSWORD: "root1234",
-  DATABASE: "mySQLInternshipApp",
-  DIALECT: "mysql",
-};
+import { Sequelize } from "sequelize";
+const sequelize = new Sequelize(
+  "mysql://root:root1234!@localhost:3306/mySQLInternshipApp"
+);
+export default sequelize;
