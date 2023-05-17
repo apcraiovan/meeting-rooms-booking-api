@@ -1,29 +1,32 @@
 import { DataTypes } from "sequelize";
 import sequelize from "../config//db-config";
+
 const Meetings =sequelize.define('Meetings',{
     ID:{
         type: DataTypes.INTEGER,
-        allowNull:false,
-        primaryKey:true
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true
     },
     Name:{
         type:DataTypes.STRING,
-        allowNull:false,
+        allowNull: false,
     },
     Description:{
         type:DataTypes.STRING,
+        allowNull: false
     },
     StartTime:{
         type:DataTypes.DATE,
-        allowNull:false,
+        allowNull: false,
     },
     EndTime:{
         type:DataTypes.DATE,
-        allowNull:false,
+        allowNull: false,
     },
     RoomID:{
         type: DataTypes.INTEGER,
-        allowNull:false,
+        allowNull: false,
     },
 });
 export default  Meetings;

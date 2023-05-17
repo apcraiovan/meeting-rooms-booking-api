@@ -7,7 +7,9 @@ import { Sequelize } from "sequelize";
 // const username = process.env.USERNAME ?? "";
 // const password = process.env.PASSWORD ?? "";
 
-// const sequelize = new Sequelize(database, username, password);
+// const sequelize = new Sequelize(database, username, password , {
+//   host: 'localhost',
+//   dialect: "mysql"})
 
 // console.log(database)
 
