@@ -2,7 +2,6 @@ import { DataTypes } from "sequelize";
 import sequelize from "../configs/db-config";
 import Rooms from "./rooms.model";
 
-
 const Meetings =sequelize.define('Meetings',{
     ID:{
         type: DataTypes.INTEGER,
