@@ -1,8 +1,8 @@
 import express from "express";
 import morgan from "morgan";
 import sequelize from "./config/db-config";
-import Rooms from "./models/rooms.models";
-import Meetings from "./models/meetings.models";
+import Rooms from "./models/rooms.model";
+import Meetings from "./models/meetings.model";
 
 const app = express();
 const MeetingModel = new Meetings();
