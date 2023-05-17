@@ -1,7 +1,7 @@
 import express from "express";
 import morgan from "morgan";
 import sequelize from "./config/db-config";
-import Rooms from "./models/rooms";
+import Rooms from "./models/rooms.models";
 
 const app = express();
 
