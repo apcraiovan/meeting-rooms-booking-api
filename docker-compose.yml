@@ -1,0 +1,10 @@
+version: '3.8'
+services:
+  db:
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root1234
+      MYSQL_DATABASE: mySQLInternshipApp
+    ports:
+      - 3307:3307
