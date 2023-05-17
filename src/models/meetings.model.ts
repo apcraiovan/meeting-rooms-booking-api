@@ -1,5 +1,7 @@
 import { DataTypes } from "sequelize";
 import sequelize from "../configs/db-config";
+import Rooms from "./rooms.model";
+
 
 const Meetings =sequelize.define('Meetings',{
     ID:{
@@ -24,9 +26,9 @@ const Meetings =sequelize.define('Meetings',{
         type:DataTypes.DATE,
         allowNull: false,
     },
-    RoomID:{
-        type: DataTypes.INTEGER,
-        allowNull: false,
-    },
 });
+
+Rooms.hasMany(Meetings, {foreignKey: "RoomID"});
+//Meetings.belongsTo(Rooms);
+
 export default  Meetings;

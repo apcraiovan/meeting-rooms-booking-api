@@ -9,6 +9,7 @@ const password = process.env.PASSWORD ?? "";
 
 const sequelize = new Sequelize(database, username, password , {
   host: process.env.HOST,
+  port: 3306,
   dialect: "mysql"})
        
 export default sequelize;
