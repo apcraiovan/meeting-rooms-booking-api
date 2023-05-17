@@ -1,7 +1,7 @@
 import express from "express"
 import morgan from "morgan"
 import sequelize from "./config/db-config";
-import Users from "./models/user";
+import Users from "./models/User_Moedel";
  const app=express();
  const UserModel=new Users();
 app.use(morgan('tiny'));
