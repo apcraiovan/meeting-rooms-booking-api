@@ -7,4 +7,4 @@ services:
       MYSQL_ROOT_PASSWORD: root1234
       MYSQL_DATABASE: mySQLInternshipApp
     ports:
-      - 3307:3307
+      - 3307:3306

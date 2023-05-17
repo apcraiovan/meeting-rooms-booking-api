@@ -2,8 +2,11 @@ import express from "express";
 import morgan from "morgan";
 import sequelize from "./config/db-config";
 import Rooms from "./models/rooms.models";
+import Meetings from "./models/meetings.models";
 
 const app = express();
+const MeetingModel = new Meetings();
+const RoomsModel = new Rooms();
 
 app.use(morgan("tiny"));
 
