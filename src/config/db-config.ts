@@ -11,7 +11,6 @@ import { Sequelize } from "sequelize";
 //   host: 'localhost',
 //   dialect: "mysql"})
 
-// console.log(database)
 
 const sequelize=new Sequelize("mysql://root:doctari31@localhost:3306/meetingsDB");
         
