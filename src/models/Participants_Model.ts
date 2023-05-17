@@ -6,7 +6,20 @@ import Meetings from "./meetings";
 const Participants=sequelize.define('Participants',{
     ID:{type:DataTypes.INTEGER,
         primaryKey:true,
+        allowNull:false,
+        autoIncrement:true
+    },
+    // foreign key
+    USER_ID:{
+        type:DataTypes.INTEGER,
         allowNull:false},
+    //foreign key
+    MEET_ID:{
+        type:DataTypes.INTEGER,
+        allowNull:false
+
+    }
+    
     
 })
 Users.belongsToMany(Meetings,{through:Participants,foreignKey:'USER_ID'});

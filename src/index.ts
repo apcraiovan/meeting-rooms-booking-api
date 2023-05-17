@@ -4,6 +4,8 @@ import Meetings from "./models/meetings";
 import Rooms from "./models/rooms";
 import Users from "./models/User_Moedel";
 import Participants from "./models/Participants_Model";
+import { AddParticipant,GetMeetingParticipants } from "./services/Participants_Service";
+import { AddUser } from "./services/Users_Service";
 const app = express();
 const Room=new Rooms()
 const Meeting = new Meetings();
@@ -13,10 +15,9 @@ sequelize
   .authenticate()
   .then(async () => {
     console.log("authenticated");
-
     sequelize
       .sync()
-      .then(() => {
+      .then(async() => {
         console.log("success");
 
       })
