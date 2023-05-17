@@ -22,7 +22,7 @@ const Rooms = sequelize.define(
     },
   },
   {
-    tableName: "rooms"
+    tableName: "rooms",
   }
 );
 

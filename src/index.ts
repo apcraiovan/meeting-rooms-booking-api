@@ -3,10 +3,14 @@ import morgan from "morgan";
 import sequelize from "./config/db-config";
 import Rooms from "./models/rooms.model";
 import Meetings from "./models/meetings.model";
+import Users from "./models/users.model";
+import Participants from "./models/participants.model";
 
 const app = express();
 const MeetingModel = new Meetings();
 const RoomsModel = new Rooms();
+const UsersModel = new Users();
+const ParticipantsModel = new Participants();
 
 app.use(morgan("tiny"));
 
