@@ -1,6 +1,6 @@
 import express from "express";
-import sequelize from "./config/db-config";
-import Meetings from "./models/meetings";
+import sequelize from "./src/configs/db-config";
+import Meetings from "./src/models/meetings";
 
 const app = express();
 const Meeting = new Meetings();
