@@ -25,3 +25,4 @@ export async function getRoomById(id: number): Promise<any> {
   const room = await Rooms.findByPk(id);
   return room;
 }
+

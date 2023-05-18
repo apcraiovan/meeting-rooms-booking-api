@@ -28,6 +28,5 @@ const Meetings = sequelize.define("Meetings", {
 Rooms.hasMany(Meetings, {
   foreignKey: "RoomID",
 });
-//Meetings.belongsTo(Rooms);
 
 export default Meetings;

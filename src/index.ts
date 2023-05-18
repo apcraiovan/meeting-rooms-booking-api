@@ -5,6 +5,7 @@ import Rooms from "./models/rooms.model";
 import Meetings from "./models/meetings.model";
 import Users from "./models/users.model";
 import Participants from "./models/participants.model";
+import { getAllRooms } from "./services/rooms.service";
 
 const app = express();
 const MeetingModel = new Meetings();
@@ -64,6 +65,18 @@ sequelize
           .catch((err: Error) => {
             console.log("Error creating rooms: ", err);
           });
+
+        const testFunctionGetAllRooms = async () => {
+          try {
+            const rooms = await getAllRooms();
+
+            console.log(rooms);
+          } catch (error) {
+            console.log(error);
+          }
+        };
+
+        testFunctionGetAllRooms();
       })
       .catch((err: Error) => {
         console.log(err);
