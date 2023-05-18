@@ -2,14 +2,10 @@ import { getAllRooms } from "../services/rooms.service";
 
 describe("getAllRooms", () => {
   it("should retrieve all rooms", async () => {
-    // Call the getAllRooms function
     const rooms = await getAllRooms();
 
-    // Assert that the rooms array is not empty
     expect(rooms.length).toBeGreaterThan(0);
 
-    // You can add more specific assertions based on your requirements
-    // For example, you can check if the retrieved rooms match the expected data
     const expectedRooms = [
       {
         name: "Colective IQ Room",
@@ -17,7 +13,7 @@ describe("getAllRooms", () => {
         description:
           "This room is located on the right side of the office, it is a large meeting room, perfect for presentations and discussing ideas",
       },
-      // Add other expected room objects here
+
       {
         name: "High Table Room",
         capacity: 4,
