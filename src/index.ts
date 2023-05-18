@@ -10,9 +10,6 @@ sequelize
       .sync()
       .then(async() => {
         console.log("success");
-        const r=new UserRepository();
-        const data=await r.GetUsers([1,2]);
-        console.log(data);
       })
       .catch((err: Error) => {
         console.log(err);
