@@ -1,7 +1,7 @@
 import { NextFunction, Request,Response } from "express";
 import { validationResult} from "express-validator";
 
-exports.get = (req:Request, res:Response, next:NextFunction)=>{
+const getRooms = (req:Request, res:Response, next:NextFunction)=>{
     const result = validationResult(req);
     if(result.isEmpty()){
     if(req.params.id !== ""){
@@ -12,11 +12,11 @@ exports.get = (req:Request, res:Response, next:NextFunction)=>{
     }
 }
 
-exports.post = (req:Request, res:Response, next:NextFunction)=>{
+const postRoom = (req:Request, res:Response, next:NextFunction)=>{
     res.send("posted");
 };
 
-exports.put =(req:Request, res:Response, next:NextFunction)=>{
+const putRoom =(req:Request, res:Response, next:NextFunction)=>{
     const result = validationResult(req);
     if(result.isEmpty()){
         return res.send("updated " + req.params.id);
@@ -24,10 +24,12 @@ exports.put =(req:Request, res:Response, next:NextFunction)=>{
     res.send({errors: result.array()});
 };
 
-exports.delete = (req:Request, res:Response, next:NextFunction)=>{
+const deleteRoom = (req:Request, res:Response, next:NextFunction)=>{
     const result = validationResult(req);
     if(result.isEmpty()){
         return res.send("deleted " + req.params.id);
     }
     res.send({errors: result.array()});
 };
+
+module.exports = {getRooms, postRoom, putRoom, deleteRoom};
