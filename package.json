@@ -33,6 +33,7 @@
     "morgan": "^1.10.0",
     "mysql2": "^3.3.1",
     "sequelize": "^6.31.1",
+    "sequelize-typescript": "^2.1.5",
     "sqlite3": "^5.1.6",
     "typescript": "^5.0.4"
   }
