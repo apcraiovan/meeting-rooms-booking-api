@@ -66,17 +66,17 @@ sequelize
             console.log("Error creating rooms: ", err);
           });
 
-        const testFunctionGetAllRooms = async () => {
-          try {
-            const rooms = await getAllRooms();
+        // const testFunctionGetAllRooms = async () => {
+        //   try {
+        //     const rooms = await getAllRooms();
 
-            console.log(rooms);
-          } catch (error) {
-            console.log(error);
-          }
-        };
+        //     console.log(rooms);
+        //   } catch (error) {
+        //     console.log(error);
+        //   }
+        // };
 
-        testFunctionGetAllRooms();
+        // testFunctionGetAllRooms();
       })
       .catch((err: Error) => {
         console.log(err);
