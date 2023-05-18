@@ -1,4 +1,8 @@
-import { getAllRooms } from "../services/rooms.service";
+import {
+  deleteRoomById,
+  getAllRooms,
+  getRoomById,
+} from "../services/rooms.service";
 
 describe("getAllRooms", () => {
   it("should retrieve all rooms", async () => {
@@ -48,5 +52,46 @@ describe("getAllRooms", () => {
         )
       )
     );
+  });
+});
+
+describe("getRoomById", () => {
+  it("should retrieve a room by its ID", async () => {
+    const roomId = 1;
+
+    const room = await getRoomById(roomId);
+
+    expect(room).toBeDefined();
+    expect(room.id).toBe(roomId);
+  });
+
+  it("should return null if room ID does not exist", async () => {
+    const roomId = 50; // Replace with a non-existent ID
+
+    const room = await getRoomById(roomId);
+
+    expect(room).toBeNull();
+  });
+});
+
+describe("deleteRoomById", () => {
+  it("should delete a room by its ID", async () => {
+    const roomId = 1; // Replace with the ID of the room you want to delete
+
+    const result = await deleteRoomById(roomId);
+
+    expect(result).toBe(true);
+
+    // Verify that the room has been deleted
+    const room = await getRoomById(roomId);
+    expect(room).toBeNull();
+  });
+
+  it("should return false if room ID does not exist", async () => {
+    const roomId = 1; // Replace with a non-existent ID
+
+    const result = await deleteRoomById(roomId);
+
+    expect(result).toBe(false);
   });
 });

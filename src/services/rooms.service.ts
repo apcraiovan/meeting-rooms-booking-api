@@ -8,12 +8,19 @@ interface RoomAttributes {
   description: string;
 }
 
-export async function deleteRoomById(id: number): Promise<void> {
-  await Rooms.destroy({
-    where: {
-      id: id,
-    },
-  });
+export async function deleteRoomById(id: number): Promise<boolean> {
+  try {
+    const result = await Rooms.destroy({
+      where: {
+        id: id,
+      },
+    });
+
+    return result === 1; //(room deleted)
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
 }
 
 export async function getAllRooms(): Promise<Model<RoomAttributes>[]> {
@@ -25,4 +32,3 @@ export async function getRoomById(id: number): Promise<any> {
   const room = await Rooms.findByPk(id);
   return room;
 }
-
