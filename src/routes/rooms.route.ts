@@ -6,12 +6,12 @@ const {getRooms, postRoom, putRoom, deleteRoom} = require("../controllers/rooms.
 const roomRouter = express.Router();
 
 //ROOMS ROUTER
-roomRouter.get("/rooms/:id?", check('id').isNumeric(), getRooms);
+roomRouter.get("/:id?", check('id').isNumeric(), getRooms);
 
-roomRouter.post("/rooms", postRoom);
+roomRouter.post("", postRoom);
 
-roomRouter.put("/rooms/:id", check('id').notEmpty().isNumeric(), putRoom);
+roomRouter.put("/:id", check('id').notEmpty().isNumeric(), putRoom);
 
-roomRouter.delete("/rooms/:id",check('id').notEmpty().isNumeric(), deleteRoom );
+roomRouter.delete("/:id",check('id').notEmpty().isNumeric(), deleteRoom );
 
 module.exports = roomRouter;
