@@ -1,4 +1,12 @@
+import { Model } from "sequelize";
 import Rooms from "../models/rooms.model";
+
+interface RoomAttributes {
+  id: number;
+  name: string;
+  capacity: number;
+  description: string;
+}
 
 export async function deleteRoomById(id: number): Promise<void> {
   await Rooms.destroy({
@@ -8,7 +16,7 @@ export async function deleteRoomById(id: number): Promise<void> {
   });
 }
 
-export async function getAllRooms(): Promise<any[]> {
+export async function getAllRooms(): Promise<Model<RoomAttributes>[]> {
   const rooms = await Rooms.findAll();
   return rooms;
 }
