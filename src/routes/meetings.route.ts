@@ -1,6 +1,6 @@
 export {};
 const express = require("express");
-import { MeetingController } from "../controllers/meetings.controller";
+import { MeetingController } from "../controller/meetings.controller";
 
 const meetingController = new MeetingController();
 const meetingRouter = express.Router();

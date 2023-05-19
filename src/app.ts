@@ -1,13 +1,14 @@
-import express, { Application } from 'express';
-import routerUser from './routes/user.routes';
-import bodyParser from 'body-parser';
+const express = require("express");
+import {Express, Router} from "express";
 
-const app: Application = express();
+const routes = require("./routes/routes");
 
-// middleware
-app.use(bodyParser.json());
+const app : Express  = express();
 
-// routes
-app.use(routerUser);
+app.use(routes);
+
+app.listen(3001, ()=>{
+    console.log("Server started on port 3001.");
+});
 
 export default app

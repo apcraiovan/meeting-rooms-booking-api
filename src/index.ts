@@ -1,17 +1,4 @@
-<<<<<<< HEAD
-const express = require("express");
-import {Express, Router} from "express";
 
-const routes = require("./routes/routes");
-
-const app : Express  = express();
-
-app.use(routes);
-
-app.listen(3001, ()=>{
-    console.log("Server started on port 3001.");
-});
-=======
 import app from './app';
 import dotenv from 'dotenv';
 import { connectToDatabase, sequelize } from './config/mysql.config';
@@ -37,5 +24,3 @@ connectToDatabase().then(() => {
     });
 });
 
-
->>>>>>> cb66bafd79f7323166873d2dbc2d13b5b406606d
