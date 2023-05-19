@@ -1,10 +1,6 @@
-import express from "express";
 import { sequelize } from "./config/mysql.config";
-import Rooms from "./models/rooms.entity";
-import RoomsRepository from "./repository/rooms.repository";
-import RoomsService from "./service/rooms.service";
-const app = express();
-const RoomsS = new RoomsService();
+import app from "./app";
+
 sequelize
   .authenticate()
   .then(async () => {
@@ -78,6 +74,6 @@ sequelize
     console.log(err);
   });
 
-app.listen(8000, () => {
+app.listen(5000, () => {
   console.log("server started");
 });
