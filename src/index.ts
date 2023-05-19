@@ -23,10 +23,18 @@
 
 import express from "express";
 import sequelize from "./config/mysql.config";
-import Meetings from "./models/meetings.model";
+import routerMeeting from "./routes/meeting.routes";
+import Meeting from "./models/meetings.model";
 
 const app = express();
-const Meeting1= new Meetings()
+// middleware
+app.use(express.json());
+
+// routes
+app.use(routerMeeting);
+
+
+const Meeting1= new Meeting()
 
 sequelize
   .authenticate()
@@ -47,6 +55,6 @@ sequelize
     console.log(err);
   });
 
-app.listen(8000, () => {
+app.listen(5000, () => {
   console.log("server started");
 });

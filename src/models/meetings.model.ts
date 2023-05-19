@@ -51,7 +51,7 @@ import { DataTypes } from "sequelize";
 import sequelize from "../config/mysql.config";
 import Rooms from "./rooms.model";
 
-const Meetings =sequelize.define('Meetings',{
+const Meeting =sequelize.define('Meetings',{
     ID:{
         type: DataTypes.INTEGER,
         allowNull: false,
@@ -76,7 +76,7 @@ const Meetings =sequelize.define('Meetings',{
     },
 });
 
-Rooms.hasMany(Meetings, {foreignKey: "RoomID"});
+Rooms.hasMany(Meeting, {foreignKey: "RoomID"});
 //Meetings.belongsTo(Rooms);
 
-export default  Meetings;
+export default  Meeting;

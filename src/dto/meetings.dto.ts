@@ -13,4 +13,5 @@ export interface CreateMeetingDto {
     StartTime: Date;
     EndTime: Date;
     RoomID: number;
+
 }
