@@ -1,6 +1,6 @@
-import express from "express";
 import {sequelize} from "./config/mysql.config";
-const app = express();
+import app from "./app";
+
 sequelize
   .authenticate()
   .then(async () => {
@@ -18,7 +18,6 @@ sequelize
     console.log(err);
   });
 
-app.listen(8000, () => {
+app.listen(5000, () => {
   console.log("server started");
 });
-;
