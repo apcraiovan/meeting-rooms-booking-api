@@ -2,6 +2,7 @@ import { Sequelize } from "sequelize-typescript";
 import dotenv from "dotenv";
 import Users from "../models/user.entity";
 import Participants from "../models/participants.entity";
+import Meeting from "../models/meeting.entity";
 dotenv.config(); // This should load the vars from .env file
 
 const DB_HOST = process.env.DB_HOST || "localhost";

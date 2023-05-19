@@ -1,6 +1,6 @@
 import e, { Request, Response } from "express";
-import { UserService } from "../service/user.service";
 import { CreateUserDto } from "../dto/create.user.dto";
+import UserService from "../service/user.service";
 
 const userService = new UserService();
 
