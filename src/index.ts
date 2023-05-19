@@ -4,9 +4,6 @@ sequelize
   .authenticate()
   .then(async () => {
     console.log("authenticated");
-
-    sequelize.addModels([Rooms]);
-
     sequelize
       .sync({ force: true })
       .then(async () => {
