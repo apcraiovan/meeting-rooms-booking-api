@@ -1,10 +1,11 @@
 export {};
 const express = require("express");
-const {postMeeting} = require("../controllers/meetings.controller");
+import { MeetingController } from "../controllers/meetings.controller";
 
+const meetingController = new MeetingController();
 const meetingRouter = express.Router();
 
 //MEETINGS ROUTER
-meetingRouter.post("", postMeeting);
+meetingRouter.post("", meetingController.postMeeting);
 
 module.exports = meetingRouter;
