@@ -21,17 +21,9 @@
 //     });
 // });
 
-import express from "express";
 import sequelize from "./config/mysql.config";
-import routerMeeting from "./routes/meeting.routes";
 import Meeting from "./models/meetings.model";
-
-const app = express();
-// middleware
-app.use(express.json());
-
-// routes
-app.use(routerMeeting);
+import app from "./app";
 
 
 const Meeting1= new Meeting()
@@ -45,6 +37,27 @@ sequelize
       .sync()
       .then(() => {
         console.log("success");
+
+        const meet = [
+          {
+            Name: "name",
+            Description:
+              "ercece",
+            //RoomID: 1,
+            StartTime: "2023-05-19T08:35:59.620Z",
+            EndTime: "2023-05-19T08:35:59.620Z",
+          },
+         
+        ];
+
+        Meeting.bulkCreate(meet)
+          .then(() => {
+            console.log("successfully");
+          })
+          .catch((err: Error) => {
+            console.log("Error creating meet: ", err);
+          });
+
 
       })
       .catch((err: Error) => {
