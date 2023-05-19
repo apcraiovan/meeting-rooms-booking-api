@@ -1,5 +1,5 @@
 import express, { Application } from 'express';
-import routerUser from './routes/user.routes';
+//import routerUser from './routes/user.routes';
 import bodyParser from 'body-parser';
 
 const app = express();
@@ -8,6 +8,6 @@ const app = express();
 app.use(bodyParser.json());
 
 // routes
-app.use(routerUser);
+//app.use(routerUser);
 
 export default app
