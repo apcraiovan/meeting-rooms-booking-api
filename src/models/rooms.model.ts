@@ -1,5 +1,24 @@
+// import { Table, Column, DataType, Model } from "sequelize-typescript";
+
+// @Table({})
+// class Rooms extends Model {
+//   @Column({
+//     type: DataType.INTEGER,
+//     primaryKey: true,
+//     autoIncrement: true,
+//   })
+//   id!: number;
+
+//   @Column({
+//     type: DataType.STRING,
+//     allowNull: false,
+//   })
+//   name!: string;
+// }
+
+// export default Rooms;
 import { DataTypes } from "sequelize";
-import sequelize from "../configs/db-config";
+import sequelize from "../config/mysql.config";
 const Rooms = sequelize.define(
   "Room",
   {

@@ -1,5 +1,54 @@
+// import {Table,DataType, Model,Column} from "sequelize-typescript";
+// import Rooms from "./rooms.model";
+// @Table({})
+
+// class Meeting extends Model{
+//     @Column({
+//         type: DataType.INTEGER,
+//         allowNull: false,
+//         primaryKey: true,
+//         autoIncrement: true
+//     })
+//     ID!:number;
+
+//     @Column({
+//         type: DataType.STRING,
+//         allowNull: false
+//     })
+//     Name!:string;
+
+//     @Column({
+//         type: DataType.STRING,
+//         allowNull: false
+//     })
+//     Description!:string;
+
+//     @Column({
+//         type: DataType.DATE,
+//         allowNull: false
+//     })
+//     StartTime!:Date;
+
+//     @Column({
+//         type: DataType.DATE,
+//         allowNull: false
+//     })
+//     EndTime!:Date;
+
+//     @Column({
+//         type: DataType.INTEGER,
+//         allowNull: false
+//     })
+//     RoomID!:number;
+// }
+
+// Rooms.hasMany(Meeting, {foreignKey: "RoomID"});
+// //Meetings.belongsTo(Rooms);
+
+// export default Meeting;
+
 import { DataTypes } from "sequelize";
-import sequelize from "../configs/db-config";
+import sequelize from "../config/mysql.config";
 import Rooms from "./rooms.model";
 
 const Meetings =sequelize.define('Meetings',{
