@@ -14,31 +14,11 @@ sequelize
       .then(async() => {
         console.log("success");
 
-
-        const meetToAdd = [
-          {
-            name: "intalnire",
-            description: "descriere",
-            startTime: new Date(),
-            endTime: new Date(),
-            roomId: 2
-          },
-         
-        ];
-
-        // Meeting.bulkCreate(meetToAdd)
-        //   .then(() => {
-        //     console.log("meet created successfully");
-        //   })
-        //   .catch((err: Error) => {
-        //     console.log("Error creating meet: ", err);
-        //   });
-
-
+          //GET
           const testFunctionGetMeeting = async () => {
             try {
-              const meetings = await MeetingServ.GetAllMeetingsByRoomId(22);
-              //const meetings = await MeetingServ.GetMeetingById(4);
+              //const meetings = await MeetingServ.GetAllMeetingsByRoomId(22);
+              const meetings = await MeetingServ.GetMeetingById(9);
   
               console.log(meetings);
             } catch (error) {
@@ -46,7 +26,20 @@ sequelize
             }
           };
   
-          testFunctionGetMeeting();
+          //testFunctionGetMeeting();
+
+          //POST
+          const testFunctionAddMeeting = async () => {
+            try {
+              const meetings = await MeetingServ.AddMeeting("test2", "descriere2", new Date(), new Date(), 22);
+  
+              console.log(meetings);
+            } catch (error) {
+              console.log(error);
+            }
+          };
+
+          //testFunctionAddMeeting()
 
 
       })
