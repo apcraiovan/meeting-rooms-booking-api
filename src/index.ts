@@ -1,8 +1,6 @@
-
 import app from './app';
 import dotenv from 'dotenv';
 import { connectToDatabase, sequelize } from './config/mysql.config';
-import { User } from './models/user.entity';
 
 
 dotenv.config(); // This should load the vars from .env file
@@ -23,4 +21,4 @@ connectToDatabase().then(() => {
         console.error('Unable to synch...', err);
     });
 });
-
+;
