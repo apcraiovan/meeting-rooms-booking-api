@@ -1,12 +1,9 @@
-import express, { Application } from 'express';
-//import routerUser from './routes/user.routes';
+import express, { Application, Express } from 'express';
+const router = require("./routes/routes");
 import bodyParser from 'body-parser';
 
 const app : Express  = express();
 
-app.use(routes);
-
-// routes
-//app.use(routerUser);
+app.use(router);
 
 export default app
