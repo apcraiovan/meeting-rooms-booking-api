@@ -10,7 +10,7 @@ sequelize
   .then(async () => {
     console.log("authenticated");
 
-    sequelize.addModels([Rooms]);
+    //sequelize.addModels([Rooms]);
 
     sequelize
       .sync()

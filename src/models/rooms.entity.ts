@@ -1,4 +1,6 @@
 import { Table, DataType, Model, Column } from "sequelize-typescript";
+//import { sequelize } from "../config/mysql.config";
+
 @Table
 class Rooms extends Model {
   @Column({
@@ -25,3 +27,55 @@ class Rooms extends Model {
   description!: string;
 }
 export default Rooms;
+
+// import { Table, DataType, Model, Column } from "sequelize-typescript";
+
+// @Table({ modelName: "Rooms" })
+// class Rooms extends Model {
+//   @Column({
+//     type: DataType.INTEGER.UNSIGNED,
+//     autoIncrement: true,
+//     primaryKey: true,
+//   })
+//   get id(): number {
+//     return this.getDataValue("id");
+//   }
+//   set id(value: number) {
+//     this.setDataValue("id", value);
+//   }
+
+//   @Column({
+//     type: DataType.STRING,
+//     allowNull: false,
+//   })
+//   get name(): string {
+//     return this.getDataValue("name");
+//   }
+//   set name(value: string) {
+//     this.setDataValue("name", value);
+//   }
+
+//   @Column({
+//     type: DataType.INTEGER.UNSIGNED,
+//     allowNull: false,
+//   })
+//   get capacity(): number {
+//     return this.getDataValue("capacity");
+//   }
+//   set capacity(value: number) {
+//     this.setDataValue("capacity", value);
+//   }
+
+//   @Column({
+//     type: DataType.STRING,
+//     allowNull: false,
+//   })
+//   get description(): string {
+//     return this.getDataValue("description");
+//   }
+//   set description(value: string) {
+//     this.setDataValue("description", value);
+//   }
+// }
+
+// export default Rooms;
