@@ -15,5 +15,22 @@ class RoomsService {
     const data = await RoomsR.deleteRoomById(id);
     return data;
   }
+
+  async CreateRoom(
+    name: string,
+    capacity: number,
+    description: string
+  ): Promise<Model<RoomAttributesDto>> {
+    const room = await RoomsR.createRoom( name, capacity, description );
+    return room;
+  }
+
+  async UpdateRoomById(
+    id: number,
+    roomData: RoomAttributesDto
+  ): Promise<boolean> {
+    const result = await RoomsR.updateRoomById(id, roomData);
+    return result;
+  }
 }
 export default RoomsService;

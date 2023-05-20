@@ -1,9 +1,10 @@
 import { Sequelize } from "sequelize-typescript";
-import dotenv from "dotenv";
-import Users from "../models/user.entity";
-import Participants from "../models/participants.entity";
-import Meeting from "../models/meeting.entity";
+import dotenv from 'dotenv';
+import Users  from "../models/user.entity";
 import Rooms from "../models/rooms.entity";
+import Meeting from "../models/meeting.entity";
+import Participants from "../models/participants.entity";
+
 dotenv.config(); // This should load the vars from .env file
 
 const DB_HOST = process.env.DB_HOST || "localhost";
@@ -26,12 +27,7 @@ async function connectToDatabase(): Promise<void> {
   } catch (err) {
     console.error("Unable to connect to the database!", err);
   }
-  try {
-    await sequelize.authenticate();
-    console.log("Database connection established!");
-  } catch (err) {
-    console.error("Unable to connect to the database!", err);
-  }
 }
 
 export { sequelize, connectToDatabase };
+
