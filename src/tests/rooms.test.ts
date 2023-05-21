@@ -14,11 +14,11 @@ afterAll(async () => {
 });
 
 describe("Rooms", () => {
-  // it("should retrieve all rooms from the database", async () => {
-  //   const rooms = await roomsService.GeetAllRooms();
-  //   expect(rooms).toBeDefined(); // Assert that rooms are defined (not null or undefined)
-  //   expect(rooms.length).toBeGreaterThan(0); // Assert that at least one room is returned
-  // });
+  it("should retrieve all rooms from the database", async () => {
+    const rooms = await roomsService.GeetAllRooms();
+    expect(rooms).toBeDefined(); // Assert that rooms are defined (not null or undefined)
+    expect(rooms.length).toBeGreaterThan(0); // Assert that at least one room is returned
+  });
 
   it("should retrieve a room by ID", async () => {
     const roomId = 5;
@@ -28,10 +28,10 @@ describe("Rooms", () => {
     expect(room?.getDataValue("id")).toBe(roomId); // Assert that the retrieved room has the correct ID
   });
 
-  // it("should delete a room by ID", async () => {
-  //   // Assuming there is at least one room in the database
-  //   const roomId = 2;
-  //   const deleteResult = await roomsService.DeleteRoomById(roomId);
-  //   expect(deleteResult).toBe(true); // Assert that the room is successfully deleted
-  // });
+  it("should delete a room by ID", async () => {
+    // Assuming there is at least one room in the database
+    const roomId = 2;
+    const deleteResult = await roomsService.DeleteRoomById(roomId);
+    expect(deleteResult).toBe(true); // Assert that the room is successfully deleted
+  });
 });
