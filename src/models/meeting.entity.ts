@@ -1,5 +1,5 @@
 import {Table, DataType, Model, Column} from "sequelize-typescript";
-@Table({})
+@Table
 
 class Meeting extends Model{ 
     @Column({
