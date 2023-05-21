@@ -7,9 +7,14 @@ class RoomsRepository {
     return rooms;
   }
 
-  async getRoomById(id: number): Promise<any> {
-    const room = await Rooms.findByPk(id);
-    return room;
+  async getRoomById(id: number): Promise<Rooms | null> {
+    try {
+      const room = await Rooms.findByPk(id);
+      return room || null;
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
   }
 
   async deleteRoomById(id: number): Promise<boolean> {

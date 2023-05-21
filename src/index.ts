@@ -10,8 +10,6 @@ sequelize
   .then(async () => {
     console.log("authenticated");
 
-    //sequelize.addModels([Rooms]);
-
     sequelize
       .sync()
       .then(async () => {
@@ -57,18 +55,6 @@ sequelize
           .catch((err: Error) => {
             console.log("Error creating rooms: ", err);
           });
-
-        const testFunctionGetAllRooms = async () => {
-          try {
-            const rooms = await RoomsS.GeetAllRooms();
-
-            console.log(rooms);
-          } catch (error) {
-            console.log(error);
-          }
-        };
-
-        testFunctionGetAllRooms();
       })
       .catch((err: Error) => {
         console.log(err);
