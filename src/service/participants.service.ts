@@ -5,8 +5,8 @@ class ParticipantsService{
   AddParticipants(participants:Number[],meetid:Number):void{
     ParticipantsR.AddParticipants(participants,meetid)
   }
-  async GeetMetingParticipants (id:requestParticipantsDto):Promise<getParticipantsDto[]>{
-    const data= await ParticipantsR.GetMeetingParticipants(id.id);
+  async GeetMetingParticipants (id:number):Promise<getParticipantsDto[]>{
+    const data= await ParticipantsR.GetMeetingParticipants(id);
     return data;
   }
 }

@@ -1,7 +1,9 @@
 import { NextFunction, Request,Response } from "express";
 import { validationResult} from "express-validator";
 
-const RoomsService = require("../service/rooms.service");
+import { RoomsService } from "../service/rooms.service";
+
+const roomService = new RoomsService();
 
 export class RoomController {
     async getRooms(req:Request, res:Response, next:NextFunction){
@@ -9,7 +11,7 @@ export class RoomController {
         if(result.isEmpty()){
         if(req.params.id !== ""){
             try{
-            const room = RoomsService.GetRoomsById(req.params.id);
+            const room = await roomService.GetRoomsById(Number(req.params.id));
             console.log(room);
             res.json(room);
             }
@@ -20,7 +22,7 @@ export class RoomController {
         }}
         else{
             try{
-            const rooms = RoomsService.GeetAllRooms;
+            const rooms = await roomService.GeetAllRooms;
             res.json(rooms);}
             catch(err){
                 console.error(err);
@@ -30,13 +32,28 @@ export class RoomController {
     }
 
     async postRoom(req:Request, res:Response, next:NextFunction){
-        
+        try{
+            roomService.CreateRoom(req.body.name, req.body.capacity, req.body.description);
+            res.json(req.body);
+        }
+        catch(err){
+            console.error(err);
+            res.status(500).json({message: "Internal server problems!"});
+        }
     };
 
     async putRoom(req:Request, res:Response, next:NextFunction){
+        const body = req.body;
         const result = validationResult(req);
         if(result.isEmpty()){
-            return res.send("updated " + req.params.id);
+            try{
+                roomService.UpdateRoomById(Number(req.params.id), body);
+                res.send("Object added!");
+            }
+            catch(err){
+                console.error(err);
+                res.status(500).json({message: "Internal server problems!"});
+            }
         }
         res.send({errors: result.array()});
     };
@@ -44,8 +61,8 @@ export class RoomController {
     async deleteRoom(req:Request, res:Response, next:NextFunction){
         const result = validationResult(req);
         if(result.isEmpty()){
-            const rooms = RoomsService.DeleteRoomById(req.params.id);
-            res.json(rooms);
+            roomService.DeleteRoomById(Number(req.params.id));
+            
         }
         res.send({errors: result.array()});
     };

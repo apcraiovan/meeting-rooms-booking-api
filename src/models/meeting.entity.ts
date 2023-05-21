@@ -7,6 +7,7 @@ import {
 } from "sequelize-typescript";
 import Participants from "./participants.entity";
 import Users from "./user.entity";
+import Rooms from "./rooms.entity";
 @Table({})
 class Meeting extends Model {
   @BelongsToMany(() => Users, { as: "meetId", through: () => Participants })

@@ -2,7 +2,7 @@ import { Model } from "sequelize";
 import RoomsRepository from "../repository/rooms.repository";
 import { RoomAttributesDto } from "../dto/getAllRooms.dto";
 const RoomsR = new RoomsRepository();
-class RoomsService {
+export class RoomsService {
   async GeetAllRooms(): Promise<Model<RoomAttributesDto>[]> {
     const data = await RoomsR.getAllRooms();
     return data;
@@ -20,7 +20,7 @@ class RoomsService {
     name: string,
     capacity: number,
     description: string
-  ): Promise<Model<RoomAttributesDto>> {
+  ): Promise<Model<RoomAttributesDto>>{
     const room = await RoomsR.createRoom( name, capacity, description );
     return room;
   }
@@ -33,4 +33,4 @@ class RoomsService {
     return result;
   }
 }
-export default RoomsService;
+
