@@ -7,9 +7,14 @@ class RoomsRepository {
     return rooms;
   }
 
-  async getRoomById(id: number): Promise<any> {
-    const room = await Rooms.findByPk(id);
-    return room;
+  async getRoomById(id: number): Promise<Rooms | null> {
+    try {
+      const room = await Rooms.findByPk(id);
+      return room || null;
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
   }
 
   async deleteRoomById(id: number): Promise<boolean> {
@@ -26,34 +31,31 @@ class RoomsRepository {
     }
   }
 
-  async createRoom(
-    name: string,
-    capacity: number,
-    description: string
-  ): Promise<Rooms> {
+  async createRoom(room: RoomAttributesDto): Promise<Rooms | null> {
     try {
-      const room = await Rooms.create({ name, capacity, description });
-      return room;
+      const { id, ...roomData } = room;
+      const createdRoom = await Rooms.create(roomData);
+      return createdRoom;
     } catch (error) {
-      // Handle any potential errors during room creation
-      throw new Error("Failed to create room");
+      console.log(error);
+      return null;
     }
   }
 
   async updateRoomById(
     id: number,
-    roomData: RoomAttributesDto
-  ): Promise<boolean> {
+    room: RoomAttributesDto
+  ): Promise<Rooms | null> {
     try {
-      const result = await Rooms.update(roomData, {
-        where: {
-          id: id,
-        },
-      });
-      return result[0] === 1; // Returns true if a room was updated
+      const existingRoom = await Rooms.findByPk(id);
+      if (existingRoom) {
+        await existingRoom.update(room);
+        return existingRoom;
+      }
+      return null;
     } catch (error) {
       console.log(error);
-      return false;
+      return null;
     }
   }
 }

@@ -1,5 +1,4 @@
 import { Table, DataType, Model, Column } from "sequelize-typescript";
-//import { sequelize } from "../config/mysql.config";
 
 @Table
 class Rooms extends Model {
@@ -28,6 +27,7 @@ class Rooms extends Model {
 }
 export default Rooms;
 
+// These comments are to get rid of the shadowing warning at testing with sequelize models using setters and getters, both methods work
 // import { Table, DataType, Model, Column } from "sequelize-typescript";
 
 // @Table({ modelName: "Rooms" })
