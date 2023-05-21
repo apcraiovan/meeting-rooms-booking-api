@@ -19,20 +19,18 @@ class RoomsService {
   }
 
   async CreateRoom(
-    name: string,
-    capacity: number,
-    description: string
-  ): Promise<Model<RoomAttributesDto>> {
-    const room = await RoomsR.createRoom(name, capacity, description);
-    return room;
+    room: RoomAttributesDto
+  ): Promise<Model<RoomAttributesDto> | null> {
+    const createdRoom = await RoomsR.createRoom(room);
+    return createdRoom;
   }
 
   async UpdateRoomById(
     id: number,
-    roomData: RoomAttributesDto
-  ): Promise<boolean> {
-    const result = await RoomsR.updateRoomById(id, roomData);
-    return result;
+    room: RoomAttributesDto
+  ): Promise<Model<RoomAttributesDto> | null> {
+    const updatedRoom = await RoomsR.updateRoomById(id, room);
+    return updatedRoom;
   }
 }
 export default RoomsService;

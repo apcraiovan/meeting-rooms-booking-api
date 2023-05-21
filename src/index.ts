@@ -15,6 +15,7 @@ sequelize
       .then(async () => {
         console.log("success");
 
+        //Now the create method is implemented, roomsToAdd is no longer needed, it was just for testing with some populated data in database
         const roomsToAdd = [
           {
             name: "Colective IQ Room",
