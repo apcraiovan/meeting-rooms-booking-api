@@ -1,6 +1,8 @@
 import { Request, Response } from "express";
+import { CreateEventDto } from "../../dto/msgraph/eventDtos/create.event.dto";
+import { EventService } from "../../service/msgraph/events.service";
 
-const eventsService = new EventsService();
+const eventsService = new EventService();
 
 export class EventController {
   async getAllEvents(req: Request, res: Response): Promise<void> {
@@ -23,6 +25,3 @@ export class EventController {
     }
   }
 }
-
-
-

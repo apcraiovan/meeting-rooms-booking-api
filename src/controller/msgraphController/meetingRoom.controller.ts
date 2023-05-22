@@ -3,6 +3,7 @@ import { MeetingRoomsService } from "../../service/msgraph/meetingRoom.service";
 import { CreateMeetingRoomDto } from "../../dto/msgraph/meetingRoomDtos/create.meetingRoom.dto";
 import { DeleteMeetingRoomDto } from "../../dto/msgraph/meetingRoomDtos/delete.meetingRoom.dto";
 import { UpdateMeetingRoomDto } from "../../dto/msgraph/meetingRoomDtos/update.meetingRoom.dto";
+
 const meetingRoomsService = new MeetingRoomsService();
 
 export class MeetingRoomsController {

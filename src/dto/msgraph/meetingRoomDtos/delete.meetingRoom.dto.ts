@@ -1,5 +1,4 @@
 export interface DeleteMeetingRoomDto {
-    meetingRoomName: string;
-    meetingRoomEmail: string;
-  }
-  
+  meetingRoomName: string;
+  meetingRoomEmail: string;
+}

@@ -11,7 +11,7 @@ export class EventService {
 
   async createNewEvent(createEventDto: CreateEventDto): Promise<Event> {
     const {
-      eventName,    
+      eventName,
       eventStartTime,
       eventEndTime,
       eventDescription,

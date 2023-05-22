@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
-import {ParticipantService } from "../../service/msgraph/participants.service";
+import { ParticipantService } from "../../service/msgraph/participants.service";
+
 const participantService = new ParticipantService();
 
 export class ParticipantsController {
@@ -13,5 +14,3 @@ export class ParticipantsController {
     }
   }
 }
-
-

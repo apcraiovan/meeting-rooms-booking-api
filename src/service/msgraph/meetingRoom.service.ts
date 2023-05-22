@@ -13,12 +13,17 @@ export class MeetingRoomsService {
   async createNewMeetingRoom(
     createMeetingRoomDto: CreateMeetingRoomDto
   ): Promise<MeetingRoom> {
-    const { meetingRoomName, meetingRoomCapacity, meetingRoomDescription } =
-      createMeetingRoomDto;
+    const {
+      meetingRoomName,
+      meetingRoomCapacity,
+      meetingRoomDescription,
+      meetingRoomEmail,
+    } = createMeetingRoomDto;
     return meetingRoomRepository.createMeetingRoom({
       meetingRoomName,
       meetingRoomCapacity,
       meetingRoomDescription,
+      meetingRoomEmail,
     });
   }
   async deleteMeetingRoom(

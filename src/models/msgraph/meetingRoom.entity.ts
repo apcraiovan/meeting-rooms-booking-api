@@ -1,6 +1,6 @@
-export interface MeetingRoom{
-    name: string;
-    emailAddress: {
-        address: string;
-    }
+export interface MeetingRoom {
+  name: string;
+  emailAddress: {
+    address: string;
+  };
 }

@@ -5,10 +5,10 @@ export interface UpdateMeetingRoomDto {
     capacity?: number;
     email: string;
   };
-  newRoomData : {
+  newRoomData: {
     name?: string;
     description?: string;
     capacity?: number;
     email?: string;
-  }
+  };
 }
