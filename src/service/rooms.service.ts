@@ -3,7 +3,7 @@ import RoomsRepository from "../repository/rooms.repository";
 import { RoomAttributesDto } from "../dto/getAllRooms.dto";
 const RoomsR = new RoomsRepository();
 class RoomsService {
-  async GeetAllRooms(): Promise<Model<RoomAttributesDto>[]> {
+  async GetAllRooms(): Promise<Model<RoomAttributesDto>[]> {
     const data = await RoomsR.getAllRooms();
     return data;
   }

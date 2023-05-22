@@ -89,7 +89,7 @@ const mockCreateRoom = jest.fn();
 const mockUpdateRoomById = jest.fn();
 
 // Set up the mocked implementation for RoomsService
-RoomsService.prototype.GeetAllRooms = mockGetAllRooms;
+RoomsService.prototype.GetAllRooms = mockGetAllRooms;
 RoomsService.prototype.GetRoomById = mockGetRoomById;
 RoomsService.prototype.DeleteRoomById = mockDeleteRoomById;
 RoomsService.prototype.CreateRoom = mockCreateRoom;
@@ -113,7 +113,7 @@ describe("Rooms", () => {
     const roomsService = new RoomsService();
 
     // Call the GeetAllRooms method
-    const rooms = await roomsService.GeetAllRooms();
+    const rooms = await roomsService.GetAllRooms();
 
     expect(rooms).toEqual(mockedRooms); // Assert that the returned rooms match the mocked data
     expect(mockGetAllRooms).toHaveBeenCalledTimes(1); // Assert that the getAllRooms method was called once
