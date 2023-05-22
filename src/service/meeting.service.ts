@@ -13,6 +13,11 @@ class MeetingService {
       return data;
     }
 
+    async GetAllMeetingsByRoomIdAndDate(roomId: number): Promise<getMeetingDto[]> {
+      const data = await MeetingRepo.GetAllMeetingsByRoomIdAndDate(roomId);
+      return data;
+    }
+
     async GetMeetingById(roomId: number): Promise<getMeetingDto> {
         const data = await MeetingRepo.GetMeetingById(roomId);
         return data[0];
