@@ -1,46 +1,29 @@
-import {sequelize} from "./config/mysql.config";
+import {connectToDatabase, sequelize} from "./config/mysql.config";
 import app from "./app";
 import Meeting from "./models/meeting.entity";
 import MeetingService from "./service/meeting.service";
 
-const MeetingServ = new MeetingService()
+const meetingServ = new MeetingService()
 
-sequelize
-  .authenticate()
-  .then(async () => {
+connectToDatabase().then(() => {
     console.log("authenticated");
     sequelize
       .sync()
       .then(async() => {
         console.log("success");
 
-          //GET
-          const testFunctionGetMeeting = async () => {
-            try {
-              const meetings = await MeetingServ.GetAllMeetingsByRoomId(4);
-              //const meetings = await MeetingServ.GetMeetingById(9);
-  
-              console.log(meetings);
-            } catch (error) {
-              console.log(error);
-            }
-          };
-  
-          //testFunctionGetMeeting();
+        //POST
+        const testFunctionAddMeeting = async () => {
+          try {
+            const meetings = await meetingServ.AddMeeting("test2", "descriere2", new Date(), new Date(), 22);
 
-          //POST
-          const testFunctionAddMeeting = async () => {
-            try {
-              const meetings = await MeetingServ.AddMeeting("test2", "descriere2", new Date(), new Date(), 22);
-  
-              console.log(meetings);
-            } catch (error) {
-              console.log(error);
-            }
-          };
+            console.log(meetings);
+          } catch (error) {
+            console.log(error);
+          }
+        };
 
-          //testFunctionAddMeeting()
-
+        //testFunctionAddMeeting()
 
       })
       .catch((err: Error) => {

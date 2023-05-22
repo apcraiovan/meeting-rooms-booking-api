@@ -1,6 +1,6 @@
 import express, { Application } from 'express';
-//import routerUser from './routes/user.routes';
 import bodyParser from 'body-parser';
+import routerMeeting from './routes/meeting.routes';
 
 const app = express();
 
@@ -8,6 +8,6 @@ const app = express();
 app.use(bodyParser.json());
 
 // routes
-//app.use(routerUser);
+app.use(routerMeeting);
 
 export default app
