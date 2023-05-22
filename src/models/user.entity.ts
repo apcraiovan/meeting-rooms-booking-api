@@ -1,23 +1,24 @@
-import { Table, Column, DataType, Model } from "sequelize-typescript";
-
+import {
+  Table,
+  DataType,
+  Model,
+  Column,
+  BelongsToMany,
+} from "sequelize-typescript";
+import Participants from "./participants.entity";
+import Meeting from "./meeting.entity";
 @Table
-export class User extends Model {
-    @Column({
-        type: DataType.STRING,
-        allowNull: false
-    })
-    name!: string;
-
-    @Column({
-        type: DataType.STRING,
-        allowNull: false,
-        unique: true
-    })
-    email!: string;
-
-    @Column({
-        type: DataType.STRING,
-        allowNull: false
-    })
-    password!:string;
+class Users extends Model {
+  @BelongsToMany(() => Meeting, { as: "userId", through: () => Participants })
+  @Column({
+    type: DataType.STRING,
+    allowNull: false,
+  })
+  name!: string;
+  @Column({
+    type: DataType.STRING,
+    allowNull: false,
+  })
+  email!: string;
 }
+export default Users;

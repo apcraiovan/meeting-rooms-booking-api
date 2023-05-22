@@ -1,17 +1,14 @@
-import { CreateUserDto } from "../dto/create.user.dto";
-import { User } from "../models/user.entity";
-import { UserRepository } from "../repository/user.repository";
+import { RequestUserDto, GetUserDto } from "../dto/getusers.dto";
+import UserRepository from "../repository/user.repository";
+const UserRep = new UserRepository();
 
-
-const userRepository = new UserRepository();
-
-export class UserService {
-    async getAllUsers(): Promise<User[]> {
-        return userRepository.getAllUsers();
-    }
-
-    async createUser(createUserDto: CreateUserDto): Promise<User> {
-        const {name, email, password} = createUserDto;
-        return userRepository.createUser(name, email, password);
-    }
+class UserService {
+  async addUser(name: string, email: string): Promise<void> {
+    return await UserRep.addUser(name, email);
+  }
+  async getUsersimple(participants: RequestUserDto): Promise<GetUserDto[]> {
+    const data = await UserRep.getUsers(participants.participants);
+    return data;
+  }
 }
+export default UserService;

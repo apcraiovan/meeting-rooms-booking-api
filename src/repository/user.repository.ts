@@ -1,15 +1,20 @@
-import { User } from "../models/user.entity";
-
-export class UserRepository {
-    async getAllUsers(): Promise<User[]> {
-        return User.findAll();
-    }
-
-    async getUserById(id: string): Promise<User | null> {
-        return User.findByPk(id);
-    }
-
-    async createUser(name: string, email: string, password: string): Promise<User> {
-        return User.create({name, email, password});
-    }
+import { GetUserDto } from "../dto/getusers.dto";
+import Users from "../models/user.entity";
+class UserRepository {
+  async addUser(name: string, email: string): Promise<void> {
+    await Users.create({ name: name, email: email });
+  }
+  async getUsers(users: Number[]): Promise<GetUserDto[]> {
+    const data = await Users.findAll({ where: { id: users } });
+    return data.map((e: Users) => {
+      const dto = {
+        id: e.id,
+        name: e.id,
+        email: e.email,
+      };
+      return dto;
+    });
+  }
 }
+
+export default UserRepository;
