@@ -1,6 +1,9 @@
 import { sequelize } from "./config/mysql.config";
 import app from "./app";
 import Rooms from "./models/rooms.entity";
+import MeetingService from "./service/meeting.service";
+
+const meetingServ = new MeetingService()
 
 sequelize
   .authenticate()
@@ -8,7 +11,7 @@ sequelize
     console.log("authenticated");
 
     sequelize
-      .sync({ force: true })
+      .sync()
       .then(async () => {
         console.log("success");
 
@@ -46,13 +49,46 @@ sequelize
           },
         ];
 
-        Rooms.bulkCreate(roomsToAdd)
-          .then(() => {
-            console.log("Rooms created successfully");
-          })
-          .catch((err: Error) => {
-            console.log("Error creating rooms: ", err);
-          });
+        // Rooms.bulkCreate(roomsToAdd)
+        //   .then(() => {
+        //     console.log("Rooms created successfully");
+        //   })
+        //   .catch((err: Error) => {
+        //     console.log("Error creating rooms: ", err);
+        //   });
+
+
+          //GET
+          const testFunctionGetMeeting = async () => {
+            try {
+              const meetings = await meetingServ.GetAllMeetingsByRoomIdAndDate(4);
+              //const meetings = await meetingServ.GetAllMeetingsByRoomId(2);
+              //const meetings = await MeetingServ.GetMeetingById(9);
+  
+              console.log(meetings);
+            } catch (error) {
+              console.log(error);
+            }
+          };
+  
+          testFunctionGetMeeting();
+
+
+          //POST
+          const testFunctionAddMeeting = async () => {
+            try {
+              const meetings = await meetingServ.AddMeeting("test2", "descriere2", new Date(), new Date(), 1);
+  
+              console.log(meetings);
+            } catch (error) {
+              console.log(error);
+            }
+          };
+
+          //testFunctionAddMeeting()
+
+
+
       })
       .catch((err: Error) => {
         console.log(err);
