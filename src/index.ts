@@ -71,7 +71,7 @@ sequelize
             }
           };
   
-          testFunctionGetMeeting();
+          // testFunctionGetMeeting();
 
 
           //POST
@@ -85,7 +85,7 @@ sequelize
             }
           };
 
-          //testFunctionAddMeeting()
+          // testFunctionAddMeeting()
 
 
 

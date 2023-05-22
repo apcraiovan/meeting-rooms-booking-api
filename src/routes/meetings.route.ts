@@ -8,6 +8,11 @@ const meetingRouter = express.Router();
 //MEETINGS ROUTER
 meetingRouter.post("", meetingController.postMeeting);
 
-meetingRouter.get("/:id", meetingController.getMeetings);
+meetingRouter.get("", meetingController.getAllMeetingsByRoomId);
+
+meetingRouter.get("/today", meetingController.getAllMeetingsByRoomIAndDate);
+
+meetingRouter.get("/:id", meetingController.getMeetingById);
+
 
 module.exports = meetingRouter;
