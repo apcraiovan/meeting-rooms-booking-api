@@ -19,19 +19,10 @@ export class RoomsService {
   }
 
   async CreateRoom(
-<<<<<<< HEAD
-    name: string,
-    capacity: number,
-    description: string
-  ): Promise<Model<RoomAttributesDto>>{
-    const room = await RoomsR.createRoom( name, capacity, description );
-    return room;
-=======
     room: RoomAttributesDto
   ): Promise<Model<RoomAttributesDto> | null> {
     const createdRoom = await RoomsR.createRoom(room);
     return createdRoom;
->>>>>>> 14ccc5b64ad2e19b9bce955a45eaf4cd60e87671
   }
 
   async UpdateRoomById(

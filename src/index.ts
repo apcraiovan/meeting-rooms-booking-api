@@ -1,5 +1,7 @@
 import { sequelize } from "./config/mysql.config";
 import app from "./app";
+import Rooms from "./models/rooms.entity";
+
 sequelize
   .authenticate()
   .then(async () => {
