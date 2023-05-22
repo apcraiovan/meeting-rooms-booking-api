@@ -1,12 +1,17 @@
 import ParticipantsRepository from "../repository/participants.repository";
-import { getParticipantsDto,requestParticipantsDto } from "../dto/getparticipants.dto";
-const ParticipantsR=new ParticipantsRepository();
-class ParticipantsService{
-  AddParticipants(participants:Number[],meetid:Number):void{
-    ParticipantsR.AddParticipants(participants,meetid)
+import {
+  GetParticipantsDto,
+  RequestParticipantsDto,
+} from "../dto/getparticipants.dto";
+const ParticipantsR = new ParticipantsRepository();
+class ParticipantsService {
+  addParticipants(participants: Number[], meetid: Number): void {
+    ParticipantsR.addParticipants(participants, meetid);
   }
-  async GeetMetingParticipants (id:requestParticipantsDto):Promise<getParticipantsDto[]>{
-    const data= await ParticipantsR.GetMeetingParticipants(id.id);
+  async geetMetingParticipants(
+    id: RequestParticipantsDto
+  ): Promise<GetParticipantsDto[]> {
+    const data = await ParticipantsR.getMeetingParticipants(id.id);
     return data;
   }
 }

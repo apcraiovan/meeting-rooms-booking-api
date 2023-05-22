@@ -1,6 +1,6 @@
-export interface requestParticipantsDto{
-    id:number;
+export interface RequestParticipantsDto {
+  id: number;
 }
-export interface getParticipantsDto{
-    userId:number;
+export interface GetParticipantsDto {
+  userId: number;
 }
