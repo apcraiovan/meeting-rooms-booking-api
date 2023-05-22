@@ -61,9 +61,11 @@ sequelize
           //GET
           const testFunctionGetMeeting = async () => {
             try {
-              const meetings = await meetingServ.GetAllMeetingsByRoomIdAndDate(4);
+              //const meetings = await meetingServ.GetAllMeetingsByRoomIdAndDate(4);
               //const meetings = await meetingServ.GetAllMeetingsByRoomId(2);
-              //const meetings = await MeetingServ.GetMeetingById(9);
+              //const meetings = await meetingServ.GetMeetingById(9);
+              const meetings = await meetingServ.GetAllMeetingsByDate();
+
   
               console.log(meetings);
             } catch (error) {
@@ -71,7 +73,7 @@ sequelize
             }
           };
   
-          // testFunctionGetMeeting();
+          testFunctionGetMeeting();
 
 
           //POST
