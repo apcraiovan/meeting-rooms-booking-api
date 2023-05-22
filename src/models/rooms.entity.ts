@@ -1,13 +1,9 @@
-import { Table, DataType, Model, Column } from "sequelize-typescript";
+import { Table, DataType, Model, Column, HasMany } from "sequelize-typescript";
+import Meeting from "./meeting.entity";
 
 @Table
 class Rooms extends Model {
-  @Column({
-    type: DataType.INTEGER.UNSIGNED,
-    autoIncrement: true,
-    primaryKey: true,
-  })
-  id!: number;
+  @HasMany(() => Meeting, { as: "meetings" })
   @Column({
     type: DataType.STRING,
     allowNull: false,

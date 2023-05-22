@@ -4,13 +4,13 @@ import {
   Model,
   Column,
   BelongsToMany,
+  BelongsTo,
+  ForeignKey,
 } from "sequelize-typescript";
-import Participants from "./participants.entity";
-import Users from "./user.entity";
 import Rooms from "./rooms.entity";
 @Table({})
 class Meeting extends Model {
-  @BelongsToMany(() => Users, { as: "meetId", through: () => Participants })
+  @BelongsTo(() => Rooms, { as: "meetings" })
   @Column({
     type: DataType.STRING,
     allowNull: false,
@@ -34,15 +34,8 @@ class Meeting extends Model {
     allowNull: false,
   })
   endTime!: Date;
-
-  @Column({
-    type: DataType.INTEGER,
-    allowNull: false,
-  })
+  @ForeignKey(() => Rooms)
+  @Column
   roomId!: number;
 }
-
-//Rooms.hasMany(Meeting, {foreignKey: "RoomID"});
-//Meetings.belongsTo(Rooms);
-
 export default Meeting;

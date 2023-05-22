@@ -1,6 +1,7 @@
 import { Model } from "sequelize";
 import RoomsRepository from "../repository/rooms.repository";
 import { RoomAttributesDto } from "../dto/getAllRooms.dto";
+import { GetRoomsGroupedDto } from "../dto/getGroupedRooms.dto";
 const RoomsR = new RoomsRepository();
 export class RoomsService {
   async GeetAllRooms(): Promise<Model<RoomAttributesDto>[]> {
@@ -32,5 +33,8 @@ export class RoomsService {
     const updatedRoom = await RoomsR.updateRoomById(id, room);
     return updatedRoom;
   }
+  async GetRoomsGrouped(): Promise<GetRoomsGroupedDto[]> {
+    const data = await RoomsR.GetRoomsGrouped();
+    return data;
+  }
 }
-

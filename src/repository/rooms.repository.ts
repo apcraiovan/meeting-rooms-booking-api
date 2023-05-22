@@ -1,6 +1,8 @@
 import { Model } from "sequelize-typescript";
 import Rooms from "../models/rooms.entity";
 import { RoomAttributesDto } from "../dto/getAllRooms.dto";
+import { GetRoomsGroupedDto } from "../dto/getGroupedRooms.dto";
+import Meeting from "../models/meeting.entity";
 class RoomsRepository {
   async getAllRooms(): Promise<Model<RoomAttributesDto>[]> {
     const rooms = await Rooms.findAll();
@@ -57,6 +59,28 @@ class RoomsRepository {
       console.log(error);
       return null;
     }
+  }
+  async GetRoomsGrouped(): Promise<GetRoomsGroupedDto[]> {
+    const data = (await Rooms.findAll({
+      include: Meeting,
+    })) as unknown as GetRoomsGroupedDto[];
+    const dto = data.map((e) => {
+      const meeting = e.meetings.map((meetdata) => {
+        return {
+          name: meetdata.name,
+          description: meetdata.description,
+          startTime: meetdata.startTime,
+          endTime: meetdata.endTime,
+        };
+      });
+      return {
+        id: e.id,
+        name: e.name,
+        capacity: e.capacity,
+        meetings: meeting,
+      };
+    });
+    return dto;
   }
 }
 
