@@ -1,35 +1,41 @@
-import { MeetingRoom } from "../../models/msgraph/meetingRoom.entity";
-import { MeetingRoomRepository } from "../../repository/msgraph/meetingRoom.repository";
+import axios from "axios";
+
 import { CreateMeetingRoomDto } from "../../dto/msgraph/meetingRoomDtos/create.meetingRoom.dto";
 import { DeleteMeetingRoomDto } from "../../dto/msgraph/meetingRoomDtos/delete.meetingRoom.dto";
 import { UpdateMeetingRoomDto } from "../../dto/msgraph/meetingRoomDtos/update.meetingRoom.dto";
+import CONSTANTS from "../../constants/constants";
 
-const meetingRoomRepository = new MeetingRoomRepository();
 
 export class MeetingRoomsService {
-  async getAllMeetingRooms(): Promise<MeetingRoom[]> {
-    return meetingRoomRepository.getAllMeetingRooms();
+  async getAllMeetingRooms() {
+    try {
+      const meetingRooms = await axios.get(
+        CONSTANTS.MS_GRAPH_PATH_EVENTS,
+        { headers: { Authorization: process.env.AUTH_KEY } }
+      );
+      if (meetingRooms !== undefined) return meetingRooms;
+    } catch (err) {
+      console.error(err);
+    }
   }
-  async createNewMeetingRoom(
-    createMeetingRoomDto: CreateMeetingRoomDto
-  ): Promise<MeetingRoom> {
-    const {
-      meetingRoomName,
-      meetingRoomCapacity,
-      meetingRoomDescription,
-      meetingRoomEmail,
-    } = createMeetingRoomDto;
-    return meetingRoomRepository.createMeetingRoom({
-      meetingRoomName,
-      meetingRoomCapacity,
-      meetingRoomDescription,
-      meetingRoomEmail,
-    });
+
+  async createNewMeetingRoom(createMeetingRoomDto: CreateMeetingRoomDto) {
+    try {
+      const newMeetingRoom = await axios.post(
+        "https://graph.microsoft.com/v1.0/",
+        createMeetingRoomDto,
+        { headers: { Authorization: process.env.AUTH_KEY } }
+      );
+      if (newMeetingRoom !== undefined) return newMeetingRoom.data;
+    } catch (err) {
+      console.error(err);
+    }
   }
+
   async deleteMeetingRoom(
     deleteMeetingRoomDto: DeleteMeetingRoomDto
   ): Promise<void> {
-    const { meetingRoomName, meetingRoomEmail } = deleteMeetingRoomDto;
+    // const { meetingRoomName, meetingRoomEmail } = deleteMeetingRoomDto;
     // return meetingRoomRepository.deleteMeetingRoom(
     //   meetingRoomName,
     //   meetingRoomEmail
@@ -39,9 +45,9 @@ export class MeetingRoomsService {
     updateMeetingRoomDto: UpdateMeetingRoomDto
   ): Promise<void> {
     const { currentRoomData, newRoomData } = updateMeetingRoomDto;
-    return meetingRoomRepository.updateMeetingRoom(
-      currentRoomData,
-      newRoomData
-    );
+    // return meetingRoomRepository.updateMeetingRoom(
+    //   currentRoomData,
+    //   newRoomData
+    // );
   }
 }

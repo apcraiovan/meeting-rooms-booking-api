@@ -1,6 +1,6 @@
 export interface CreateMeetingRoomDto {
-  meetingRoomName: string;
-  meetingRoomDescription: string;
-  meetingRoomCapacity: number;
-  meetingRoomEmail: string;
+  name: string;
+  description: string;
+  capacity: number;
+  email: string;
 }

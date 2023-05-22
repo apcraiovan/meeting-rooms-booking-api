@@ -1,7 +1,7 @@
 export interface CreateEventDto {
-  eventName: string;
-  eventDescription: string;
-  eventStartTime: Date;
-  eventEndTime: Date;
+  name: string;
+  description: string;
+  startTime: Date;
+  endTime: Date;
   attendees: { emailAddress: { address: string } }[];
 }
