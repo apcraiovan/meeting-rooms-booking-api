@@ -8,7 +8,7 @@ import {
   ForeignKey,
 } from "sequelize-typescript";
 import Rooms from "./rooms.entity";
-@Table({})
+@Table
 class Meeting extends Model {
   @BelongsTo(() => Rooms, { as: "meetings" })
   @Column({

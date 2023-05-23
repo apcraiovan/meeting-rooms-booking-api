@@ -22,6 +22,6 @@ roomRouter.delete(
   check("id").notEmpty().isNumeric(),
   roomController.deleteRoom
 ); //fa o constanta pt validari sau adaugi in middleware :)
-roomRouter.get("/groupedrooms", roomController.GetRoomsGrouped);
+roomRouter.get("/groupedrooms", roomController.getAllRoomsAndMeetings);
 
 module.exports = roomRouter;

@@ -60,7 +60,7 @@ class RoomsRepository {
       return null;
     }
   }
-  async GetRoomsGrouped(): Promise<GetRoomsGroupedDto[]> {
+  async GetAllRoomsAndMeetings(): Promise<GetRoomsGroupedDto[]> {
     const data = (await Rooms.findAll({
       include: Meeting,
     })) as unknown as GetRoomsGroupedDto[];

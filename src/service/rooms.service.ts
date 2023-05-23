@@ -2,27 +2,27 @@ import { Model } from "sequelize";
 import RoomsRepository from "../repository/rooms.repository";
 import { RoomAttributesDto } from "../dto/getAllRooms.dto";
 import { GetRoomsGroupedDto } from "../dto/getGroupedRooms.dto";
-const RoomsR = new RoomsRepository();
+const Roomsrepository = new RoomsRepository();
 export class RoomsService {
   async GeetAllRooms(): Promise<Model<RoomAttributesDto>[]> {
-    const data = await RoomsR.getAllRooms();
+    const data = await Roomsrepository.getAllRooms();
     return data;
   }
 
   async GetRoomById(id: number): Promise<Model<RoomAttributesDto> | null> {
-    const room = await RoomsR.getRoomById(id);
+    const room = await Roomsrepository.getRoomById(id);
     return room;
   }
 
   async DeleteRoomById(id: number): Promise<boolean> {
-    const data = await RoomsR.deleteRoomById(id);
+    const data = await Roomsrepository.deleteRoomById(id);
     return data;
   }
 
   async CreateRoom(
     room: RoomAttributesDto
   ): Promise<Model<RoomAttributesDto> | null> {
-    const createdRoom = await RoomsR.createRoom(room);
+    const createdRoom = await Roomsrepository.createRoom(room);
     return createdRoom;
   }
 
@@ -30,11 +30,11 @@ export class RoomsService {
     id: number,
     room: RoomAttributesDto
   ): Promise<Model<RoomAttributesDto> | null> {
-    const updatedRoom = await RoomsR.updateRoomById(id, room);
+    const updatedRoom = await Roomsrepository.updateRoomById(id, room);
     return updatedRoom;
   }
-  async GetRoomsGrouped(): Promise<GetRoomsGroupedDto[]> {
-    const data = await RoomsR.GetRoomsGrouped();
+  async getAllRoomsAndMeetings(): Promise<GetRoomsGroupedDto[]> {
+    const data = await Roomsrepository.GetAllRoomsAndMeetings();
     return data;
   }
 }

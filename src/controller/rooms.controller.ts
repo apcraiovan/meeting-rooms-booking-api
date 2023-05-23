@@ -32,7 +32,6 @@ export class RoomController {
   async postRoom(req: Request, res: Response, next: NextFunction) {
     try {
       roomService.CreateRoom(req.body);
-      console.log(req.body);
       res.json(req.body);
     } catch (err) {
       console.error(err);
@@ -62,13 +61,13 @@ export class RoomController {
     }
     res.send({ errors: result.array() });
   }
-  async GetRoomsGrouped(req: Request, res: Response, nex: NextFunction) {
+  async getAllRoomsAndMeetings(req: Request, res: Response, nex: NextFunction) {
     try {
-      const data = await roomService.GetRoomsGrouped();
+      const data = await roomService.getAllRoomsAndMeetings();
       console.log(data);
       res.status(200).send(data);
     } catch (error) {
-      res.status(400).send({ message: "Internal server problems!" });
+      res.status(500).send({ message: "Internal server problems!" });
     }
   }
 }
