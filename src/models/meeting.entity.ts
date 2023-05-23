@@ -18,7 +18,7 @@ class Meeting extends Model {
   name!: string;
 
   @Column({
-    type: DataType.STRING,
+    type: DataType.TEXT,
     allowNull: false,
   })
   description!: string;
