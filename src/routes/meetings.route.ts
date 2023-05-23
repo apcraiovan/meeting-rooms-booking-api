@@ -5,20 +5,21 @@ import { MeetingController } from "../controller/meetings.controller";
 import {check} from "express-validator";
 
 
-const meetingController = new MeetingController();
+
 const meetingRouter = express.Router();
+const meetingController = new MeetingController();
 
 //MEETINGS ROUTER
-meetingRouter.post("", meetingController.postMeeting);
+meetingRouter.post("",
+[check('name').notEmpty().isString(),
+check('startTime').notEmpty().isString(),
+check('endTime').notEmpty().isString(),
+check('roomId').notEmpty().isNumeric()
+],
+meetingController.postMeeting);
 
-meetingRouter.get("/:id",
-[
-    check('id').notEmpty().isNumeric(),
-    check('name').notEmpty().isString(),
-    check('description').notEmpty().isString(),
-    check('startTime').notEmpty().toDate().isDate(),
-    check('endTime').notEmpty().isString()
-], 
-meetingController.getMeetings);
+meetingRouter.get("/:id", check('id').notEmpty().isNumeric() ,meetingController.getMeetingsByRoomId);
+
+meetingRouter.get("/today/:id", check('id').notEmpty().isNumeric(), meetingController.getTodayMeetingsByRoomId);
 
 module.exports = meetingRouter;

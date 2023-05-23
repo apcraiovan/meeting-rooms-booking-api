@@ -3,7 +3,7 @@ import MeetingRepository from "../repository/meeting.repository";
 
 const MeetingRepo = new MeetingRepository()
 
-class MeetingService {
+export default class MeetingService {
     async AddMeeting(name: string, description: string, startTime: Date, endTime: Date, roomId: number): Promise<void> {
       return await MeetingRepo.AddMeeting(name, description, startTime, endTime, roomId);
     }
@@ -22,5 +22,5 @@ class MeetingService {
         const data = await MeetingRepo.GetMeetingById(roomId);
         return data[0];
       }
+
   }
-  export default MeetingService;

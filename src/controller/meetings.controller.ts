@@ -1,35 +1,57 @@
 import { Request,Response, NextFunction } from "express";
-import MeetingService from "../service/meeting.service";
 import { validationResult } from "express-validator";
+import MeetingService from "../service/meeting.service"
 
 const meetingService = new MeetingService();
 
 export class MeetingController{
 
     async postMeeting(req:Request, res:Response, next:NextFunction ){
+        const result = validationResult(req);
+        if(result.isEmpty()){
         try{
-            console.log(req.body);
-            meetingService.AddMeeting(req.body.meetingName, req.body.meetingDescription, req.body.startDate, req.body.endDate, 1);
+            meetingService.AddMeeting(req.body.name, req.body.description, req.body.startTime, req.body.endTime, req.body.roomId);
             res.send("Meeting added!");
         }
         catch(err){
             console.error(err);
             res.status(500).json({message: "Internal server problems!"});
         }
+        }
+        else{
+            res.status(500).json({message:result.array()});
+        }
     };
 
-    async getMeetings(req:Request, res:Response, next:NextFunction){
+    async getMeetingsByRoomId(req:Request, res:Response, next:NextFunction){
         const result = validationResult(req);
         if(result.isEmpty())
         {
             try{
-                const meetings = meetingService.GetAllMeetingsByRoomId(1);
-                res.json({meetings:meetings});
+                const meetings = await meetingService.GetAllMeetingsByRoomId(Number(req.params.id));
+                res.json(meetings);
             }
             catch(err){
                 console.error(err);
                 res.status(500).json({message: "Internal server problems!"});
             }
+        }
+        else{
+            res.status(500).json({message:result.array()});
+        }
+    }
+
+    async getTodayMeetingsByRoomId(req:Request, res:Response, next:NextFunction){
+        const result = validationResult(req);
+        if(result.isEmpty()){
+        try{
+            const meetings = await meetingService.GetAllMeetingsByRoomIdAndDate(Number.parseInt(req.params.id));
+            res.json(meetings);
+        }
+        catch(err){
+            console.error(err);
+            res.status(500).json({message: "Internal server problems!"});
+        }
         }
         else{
             res.status(500).json({message:result.array()});
