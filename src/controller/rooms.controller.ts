@@ -64,7 +64,6 @@ export class RoomController {
   async getAllRoomsAndMeetings(req: Request, res: Response, nex: NextFunction) {
     try {
       const data = await roomService.getAllRoomsAndMeetings();
-      console.log(data);
       res.status(200).send(data);
     } catch (error) {
       res.status(500).send({ message: "Internal server problems!" });
