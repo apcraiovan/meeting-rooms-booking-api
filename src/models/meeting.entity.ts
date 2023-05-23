@@ -35,7 +35,10 @@ class Meeting extends Model {
   })
   endTime!: Date;
   @ForeignKey(() => Rooms)
-  @Column
+  @Column({
+    type: DataType.INTEGER,
+    allowNull: false,
+  })
   roomId!: number;
 }
 export default Meeting;
