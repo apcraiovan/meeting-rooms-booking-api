@@ -1,7 +1,7 @@
-import express, { Application } from 'express';
-import routerUser from './routes/user.routes';
-import bodyParser from 'body-parser';
-import routerMsgraph from './routes/Msgraph.routes';
+import express, { Application } from "express";
+import routerUser from "./routes/user.routes";
+import bodyParser from "body-parser";
+import routerMsgraph from "./routes/msgraph.routes";
 
 const app: Application = express();
 
@@ -12,4 +12,4 @@ app.use(bodyParser.json());
 app.use(routerUser);
 app.use(routerMsgraph);
 
-export default app
+export default app;
