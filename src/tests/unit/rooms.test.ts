@@ -1,7 +1,7 @@
-import RoomsRepository from "../repository/rooms.repository";
-import Rooms from "../models/rooms.entity"; // Import the Rooms model
-import { sequelize } from "../config/mysql.config";
-import { RoomAttributesDto } from "../dto/getAllRooms.dto";
+import RoomsRepository from "../../repository/rooms.repository";
+import Rooms from "../../models/rooms.entity"; // Import the Rooms model
+import { sequelize } from "../../config/mysql.config";
+import { RoomAttributesDto } from "../../dto/getAllRooms.dto";
 beforeAll(async () => {
   // Connect to the database before running the tests
   await sequelize.authenticate();
