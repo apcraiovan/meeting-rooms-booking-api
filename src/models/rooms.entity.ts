@@ -1,35 +1,23 @@
 import { Table, DataType, Model, Column, HasMany } from "sequelize-typescript";
-import Meeting from "./meeting.entity";
+import Meetings from "./meetings.entity";
 
 @Table
 class Rooms extends Model {
-  @HasMany(() => Meeting, { as: "meetings" })
-  @Column({
-    type: DataType.INTEGER.UNSIGNED,
-
-    autoIncrement: true,
-
-    primaryKey: true,
-  })
-  id!: number;
-
+  @HasMany(() => Meetings, { as: "meetings" })
   @Column({
     type: DataType.STRING,
-
     allowNull: false,
   })
   name!: string;
 
   @Column({
     type: DataType.INTEGER.UNSIGNED,
-
     allowNull: false,
   })
   capacity!: number;
 
   @Column({
-    type: DataType.STRING,
-
+    type: DataType.TEXT,
     allowNull: false,
   })
   description!: string;

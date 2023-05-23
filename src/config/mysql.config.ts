@@ -1,20 +1,20 @@
 import { Sequelize } from "sequelize-typescript";
 import dotenv from "dotenv";
 import Rooms from "../models/rooms.entity";
-import Meeting from "../models/meeting.entity";
+import Meetings from "../models/meetings.entity";
 dotenv.config(); // This should load the vars from .env file
 
 const DB_HOST = process.env.DB_HOST || "localhost";
 const DB_USERNAME = process.env.DB_USERNAME || "root";
-const DB_PASSWORD = process.env.DB_PASSWORD || "Fanelu2002!";
-const DB_NAME = process.env.DB_NAME || "test";
+const DB_PASSWORD = process.env.DB_PASSWORD || "doctari31";
+const DB_NAME = process.env.DB_NAME || "new_schema";
 
 const sequelize = new Sequelize(DB_NAME, DB_USERNAME, DB_PASSWORD, {
   host: DB_HOST,
-  port: 4000,
+  port: 3306,
   logging: console.log,
   dialect: "mysql",
-  models: [Rooms, Meeting],
+  models: [Rooms, Meetings],
 });
 
 async function connectToDatabase(): Promise<void> {

@@ -1,14 +1,11 @@
-import { sequelize } from "./config/mysql.config";
+import { connectToDatabase, sequelize } from "./config/mysql.config";
 import app from "./app";
-import Rooms from "./models/rooms.entity";
-import RoomsRepository from "./repository/rooms.repository";
-sequelize
-  .authenticate()
-  .then(async () => {
-    console.log("authenticated");
 
+connectToDatabase()
+  .then(() => {
+    console.log("authenticated");
     sequelize
-      .sync({})
+      .sync()
       .then(async () => {
         console.log("success");
 

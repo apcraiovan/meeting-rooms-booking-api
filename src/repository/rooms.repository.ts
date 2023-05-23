@@ -2,7 +2,8 @@ import { Model } from "sequelize-typescript";
 import Rooms from "../models/rooms.entity";
 import { RoomAttributesDto } from "../dto/getAllRooms.dto";
 import { GetRoomsGroupedDto } from "../dto/getGroupedRooms.dto";
-import Meeting from "../models/meeting.entity";
+import Meetings from "../models/meetings.entity";
+
 class RoomsRepository {
   async getAllRooms(): Promise<Model<RoomAttributesDto>[]> {
     const rooms = await Rooms.findAll();
@@ -62,7 +63,7 @@ class RoomsRepository {
   }
   async getAllRoomsAndMeetings(): Promise<GetRoomsGroupedDto[]> {
     const data = (await Rooms.findAll({
-      include: Meeting,
+      include: Meetings,
     })) as unknown as GetRoomsGroupedDto[];
     const dto = data.map((e) => {
       const meeting = e.meetings.map((meetdata) => {

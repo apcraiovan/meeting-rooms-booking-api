@@ -1,25 +1,40 @@
-export {};
 const express = require("express");
-import { NotEmpty } from "sequelize-typescript";
-import { MeetingController } from "../controller/meetings.controller";
-import {check} from "express-validator";
+import { check } from "express-validator";
+import { MeetingsController } from "../controller/meetings.controller";
 
+const meetingsController = new MeetingsController();
 
-
-const meetingRouter = express.Router();
-const meetingController = new MeetingController();
+const meetingsRouter = express.Router();
 
 //MEETINGS ROUTER
-meetingRouter.post("",
-[check('name').notEmpty().isString(),
-check('startTime').notEmpty().isString(),
-check('endTime').notEmpty().isString(),
-check('roomId').notEmpty().isNumeric()
-],
-meetingController.postMeeting);
+meetingsRouter.post(
+  "",
+  [
+    check("name").notEmpty().isString(),
+    check("description").notEmpty().isString(),
+    check("startTime").notEmpty().isString(),
+    check("endTime").notEmpty().isString(),
+    check("roomId").notEmpty().isNumeric(),
+  ],
+  meetingsController.postMeeting
+);
 
-meetingRouter.get("/:id", check('id').notEmpty().isNumeric() ,meetingController.getMeetingsByRoomId);
+meetingsRouter.get(
+  "/:id",
+  check("id").notEmpty().isNumeric(),
+  meetingsController.getMeetingById
+);
 
-meetingRouter.get("/today/:id", check('id').notEmpty().isNumeric(), meetingController.getTodayMeetingsByRoomId);
+meetingsRouter.get(
+  "/roomid/:roomid",
+  check("roomid").notEmpty().isNumeric(),
+  meetingsController.getAllMeetingsByRoomId
+);
 
-module.exports = meetingRouter;
+// meetingsRouter.get(
+//   "/today/:id",
+//   check("id").notEmpty().isNumeric(),
+//   meetingsController.getTodayMeetingsByRoomId
+// );
+
+module.exports = meetingsRouter;

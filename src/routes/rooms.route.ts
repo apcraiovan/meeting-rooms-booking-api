@@ -1,33 +1,34 @@
 const express = require("express");
 import { check } from "express-validator";
+import { RoomsController } from "../controller/rooms.controller";
 
-import { RoomController } from "../controller/rooms.controller";
+const roomsController = new RoomsController();
 
-const roomController = new RoomController();
-const roomRouter = express.Router();
+const roomsRouter = express.Router();
 
 //ROOMS ROUTER
-roomRouter.get(
+roomsRouter.get(
   "/byid/:id",
   check("id").notEmpty().isNumeric(),
-  roomController.getRoomsById
+  roomsController.getRoomById
 );
 
-roomRouter.get("", roomController.getRooms);
+roomsRouter.get("", roomsController.getAllRooms);
 
-roomRouter.post("", roomController.postRoom);
+roomsRouter.post("", roomsController.postRoom);
 
-roomRouter.put(
+roomsRouter.put(
   "/:id",
   check("id").notEmpty().isNumeric(),
-  roomController.putRoom
+  roomsController.putRoom
 );
 
-roomRouter.delete(
+roomsRouter.delete(
   "/:id",
   check("id").notEmpty().isNumeric(),
-  roomController.deleteRoom
+  roomsController.deleteRoom
 );
-roomRouter.get("/meetings", roomController.getAllRoomsAndMeetings);
 
-module.exports = roomRouter;
+roomsRouter.get("/meetings", roomsController.getAllRoomsAndMeetings);
+
+module.exports = roomsRouter;

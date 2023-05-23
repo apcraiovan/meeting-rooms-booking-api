@@ -1,15 +1,15 @@
-import { getMeetingDto } from "../dto/meeting.dto";
-import Meeting from "../models/meeting.entity";
+import { getMeetingDto } from "../dto/getMeetings.dto";
+import Meetings from "../models/meetings.entity";
 
-class MeetingRepository {
-  async AddMeeting(
+class MeetingsRepository {
+  async createMeeting(
     name: string,
     description: string,
     startTime: Date,
     endTime: Date,
     roomId: number
   ): Promise<void> {
-    await Meeting.create({
+    await Meetings.create({
       name: name,
       description: description,
       startTime: startTime,
@@ -18,13 +18,13 @@ class MeetingRepository {
     });
   }
 
-  async GetAllMeetingsByRoomId(roomId: number): Promise<getMeetingDto[]> {
-    const data = await Meeting.findAll({
+  async getAllMeetingsByRoomId(roomId: number): Promise<getMeetingDto[]> {
+    const data = await Meetings.findAll({
       where: { roomId: roomId },
       raw: true,
       mapToModel: true,
     });
-    return data.map((e: Meeting) => {
+    return data.map((e: Meetings) => {
       const dto = {
         id: e.id,
         name: e.name,
@@ -37,13 +37,13 @@ class MeetingRepository {
     });
   }
 
-  async GetMeetingById(id: number): Promise<getMeetingDto[]> {
-    const data = await Meeting.findAll({
+  async getMeetingById(id: number): Promise<getMeetingDto[]> {
+    const data = await Meetings.findAll({
       where: { id: id },
       raw: true,
       mapToModel: true,
     });
-    return data.map((e: Meeting) => {
+    return data.map((e: Meetings) => {
       const dto = {
         id: e.id,
         name: e.name,
@@ -57,4 +57,4 @@ class MeetingRepository {
   }
 }
 
-export default MeetingRepository;
+export default MeetingsRepository;
