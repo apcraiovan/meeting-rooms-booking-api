@@ -42,5 +42,3 @@ class Meeting extends Model {
   roomId!: number;
 }
 export default Meeting;
-
-export default Meeting;
