@@ -13,9 +13,18 @@ routerMsgraph
   .route("/msgraph/participants")
   .get(participantsController.getAllParticipants);
 
+routerMsgraph.get(
+  "/msgraph/meetingrooms/:mailPatern",
+  meetingRoomController.getAllMeetingRooms
+);
+
+routerMsgraph.get(
+  "/msgraph/meetingroom/:meetingRoomId",
+  meetingRoomController.getMeetingRoomById
+)
+
 routerMsgraph
-  .route("/msgraph/meetingrooms")
-  .get(meetingRoomController.getAllMeetingRooms)
+  .route("/msgraph/meetingrooms/")
   .post(meetingRoomController.createNewMeetingRoom)
   .put(meetingRoomController.updateMeetingRoom)
   .delete(meetingRoomController.deleteMeetingRoom);
@@ -33,6 +42,7 @@ export default routerMsgraph;
 //==============================
 //Meeting Rooms
 //GET - Get All Meeting Rooms
+//  * Mail Patern - The pattern of the email address that is used for meeting rooms
 //POST - Create a MeetingRoom
 //PUT - Update a MeetingRoom
 //DELETE - Delete a MeetingRoom

@@ -9,7 +9,7 @@ const app: Application = express();
 app.use(bodyParser.json());
 
 // routes
-app.use(routerUser);
+// app.use(routerUser);
 app.use(routerMsgraph);
 
 export default app;

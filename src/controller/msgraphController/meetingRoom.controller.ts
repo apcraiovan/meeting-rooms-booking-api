@@ -7,10 +7,23 @@ import { UpdateMeetingRoomDto } from "../../dto/msgraph/meetingRoomDtos/update.m
 const meetingRoomsService = new MeetingRoomsService();
 
 export class MeetingRoomsController {
+
+  async getMeetingRoomById(req:Request, res:Response): Promise<void> {
+    try{
+      const meetingRoom = await meetingRoomsService.getMeetingRoomById(req.params.meetingRoomId);
+      res.json(meetingRoom?.data)
+    }
+    catch(err){
+      console.error(err);
+      res.status(500).end("Internal Server Error...");
+    }
+
+  }
+
   async getAllMeetingRooms(req: Request, res: Response): Promise<void> {
     try {
-      const meetingRooms = await meetingRoomsService.getAllMeetingRooms();
-      res.json(meetingRooms);
+      const meetingRooms = await meetingRoomsService.getAllMeetingRooms(req.params.mailPatern);
+      res.json(meetingRooms?.data.value);
     } catch (err) {
       console.error(err);
       res.status(500).json("Internal Server Error...");
@@ -35,7 +48,7 @@ export class MeetingRoomsController {
         meetingRoomsService.deleteMeetingRoom(deleteMeetingRoomDto);
       res.status(201).json(meetingRoom);
     } catch (err) {
-      console.error(err);
+      console.error("err");
       res.status(500).json("Internal Server Error...");
     }
   }
