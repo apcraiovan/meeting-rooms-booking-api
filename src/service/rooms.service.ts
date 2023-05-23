@@ -34,7 +34,7 @@ export class RoomsService {
     return updatedRoom;
   }
   async getAllRoomsAndMeetings(): Promise<GetRoomsGroupedDto[]> {
-    const data = await Roomsrepository.GetAllRoomsAndMeetings();
+    const data = await Roomsrepository.getAllRoomsAndMeetings();
     return data;
   }
 }
