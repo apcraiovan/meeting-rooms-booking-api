@@ -25,7 +25,7 @@ export class MeetingRoomsService {
     this.headersConfig.headers.Authorization = "Bearer " + token;
   }
 
-  async getMeetingRoomById(roomId: string){
+  async getMeetingRoomById(roomId: string) {
     try {
       await MeetingRoomsService.getToken();
       const meetingRooms = await axios.get(
@@ -38,17 +38,16 @@ export class MeetingRoomsService {
     }
   }
 
-  async getAllMeetingRooms(location:string) {
+  async getAllMeetingRooms(location: string) {
     try {
       await MeetingRoomsService.getToken();
-      console.log(location);
       const meetingRooms = await axios.get(
         `https://graph.microsoft.com/v1.0/users?$count=true&$search="displayName:room"&$filter=startsWith(mail,'${location}')&$orderBy=displayName&$select=id,displayName,mail`,
         MeetingRoomsService.headersConfig
       );
       if (meetingRooms !== undefined) return meetingRooms;
     } catch (err) {
-      // console.error(err);
+      console.error(err);
     }
   }
 
