@@ -10,14 +10,38 @@ class RoomsRepository {
     return rooms;
   }
 
-  async getRoomById(id: number): Promise<Rooms | null> {
-    try {
-      const room = await Rooms.findByPk(id);
-      return room || null;
-    } catch (error) {
-      console.log(error);
-      return null;
-    }
+  async getRoomById(id: number): Promise<GetRoomsGroupedDto[]> {
+    const today = new Date();
+    const data = (await Rooms.findAll({
+      include: {
+        model: Meetings,
+        where: {
+          id: id,
+        },
+      },
+    })) as unknown as GetRoomsGroupedDto[];
+    const dto = data.map((e) => {
+      let meetings: TransferMeetingsDto[] = [];
+      e.meetings.forEach((meetdata) => {
+        const dbdate = new Date(meetdata.startTime);
+        if (dbdate.toDateString() == today.toDateString()) {
+          meetings.push({
+            name: meetdata.name,
+            description: meetdata.description,
+            startTime: meetdata.startTime,
+            endTime: meetdata.endTime,
+          });
+        }
+      });
+      return {
+        id: e.id,
+        name: e.name,
+        capacity: e.capacity,
+        description: e.description,
+        meetings: meetings,
+      };
+    });
+    return dto;
   }
 
   async deleteRoomById(id: number): Promise<boolean> {

@@ -11,9 +11,9 @@ export class RoomsService {
     return data;
   }
 
-  async getRoomById(id: number): Promise<Model<RoomAttributesDto> | null> {
+  async getRoomById(id: number): Promise<GetRoomsGroupedDto | null> {
     const room = await roomsRepository.getRoomById(id);
-    return room;
+    return room[0];
   }
 
   async deleteRoomById(id: number): Promise<boolean> {
