@@ -63,25 +63,4 @@ export class MeetingsController {
       res.status(500).json({ message: result.array() });
     }
   }
-
-  // async getTodayMeetingsByRoomId(
-  //   req: Request,
-  //   res: Response,
-  //   next: NextFunction
-  // ) {
-  //   const result = validationResult(req);
-  //   if (result.isEmpty()) {
-  //     try {
-  //       const meetings = await meetingsService.getAllMeetingsByRoomIdAndDate(
-  //         Number.parseInt(req.params.id)
-  //       );
-  //       res.json(meetings);
-  //     } catch (err) {
-  //       console.error(err);
-  //       res.status(500).json({ message: "Internal server problems!" });
-  //     }
-  //   } else {
-  //     res.status(500).json({ message: result.array() });
-  //   }
-  // }
 }

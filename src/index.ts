@@ -9,6 +9,7 @@ connectToDatabase()
       .then(async () => {
         console.log("success");
 
+        //TODO delete this after frontend is working
         //Now the create method is implemented, roomsToAdd is no longer needed, it was just for testing with some populated data in database
         // const roomsToAdd = [
         //   {

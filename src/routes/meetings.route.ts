@@ -31,10 +31,4 @@ meetingsRouter.get(
   meetingsController.getAllMeetingsByRoomId
 );
 
-// meetingsRouter.get(
-//   "/today/:id",
-//   check("id").notEmpty().isNumeric(),
-//   meetingsController.getTodayMeetingsByRoomId
-// );
-
 module.exports = meetingsRouter;

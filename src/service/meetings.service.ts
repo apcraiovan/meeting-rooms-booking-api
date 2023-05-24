@@ -29,11 +29,4 @@ export default class MeetingsService {
     const data = await meetingsRepository.getMeetingById(id);
     return data[0];
   }
-
-  // async getAllMeetingsByRoomIdAndDate(
-  //   roomId: number
-  // ): Promise<getMeetingDto[]> {
-  //   const data = await meetingRepository.getAllMeetingsByRoomId(roomId);
-  //   return data;
-  // }
 }
