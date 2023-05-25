@@ -7,7 +7,9 @@ export class ParticipantsController {
   async getAllParticipants(req: Request, res: Response): Promise<void> {
     try {
       const countryCode = req.params.countryCode;
-      const participants = await participantService.getAllParticipants(countryCode);
+      const participants = await participantService.getAllParticipants(
+        countryCode
+      );
       res.json(participants);
     } catch (err) {
       console.error(err);

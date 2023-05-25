@@ -3,8 +3,10 @@ import routerUser from "./routes/user.routes";
 import bodyParser from "body-parser";
 import routerMsgraph from "./routes/msgraph.routes";
 
-const app: Application = express();
 const cors = require("cors");
+const dotenv = require("dotenv");
+dotenv.config();
+const app: Application = express();
 
 app.use(cors());
 
