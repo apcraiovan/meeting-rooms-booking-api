@@ -1,5 +1,9 @@
 import axios from "axios";
-import MS_GRAPH_PATH from "../../constants/constants";
+import {MS_GRAPH_BASIC_PATHS} from "../../constants/constants";
+import {MsGraphUtils} from "../../utils/msgraph/msgraph.utils";
+
+const msGraphUtils = new MsGraphUtils();
+
 
 export class ParticipantService {
     async getAllParticipants(countryCode : string) {
