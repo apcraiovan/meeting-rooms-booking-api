@@ -13,11 +13,9 @@ class RoomsRepository {
   async getRoomById(id: number): Promise<GetRoomsGroupedDto[]> {
     const today = new Date();
     const data = (await Rooms.findAll({
+      where: { id: id },
       include: {
         model: Meetings,
-        where: {
-          id: id,
-        },
       },
     })) as unknown as GetRoomsGroupedDto[];
     const dto = data.map((e) => {
