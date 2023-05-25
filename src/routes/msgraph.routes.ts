@@ -10,7 +10,7 @@ const participantsController = new ParticipantsController();
 const meetingRoomController = new MeetingRoomsController();
 
 routerMsgraph
-  .route("/msgraph/participants")
+  .route("/msgraph/participants/:countryCode")
   .get(participantsController.getAllParticipants);
 
 routerMsgraph.get(

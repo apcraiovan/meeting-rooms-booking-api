@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from "axios";
 
 export class MsGraphUtils {
-  getAccessToken(): Promise<any> {
+   async getAccessToken(): Promise<any> {
     return new Promise<AxiosResponse>(async (resolve, reject) => {
       try {
         const msResponse = await axios.post(
@@ -21,4 +21,17 @@ export class MsGraphUtils {
       }
     });
   }
+     headersConfig = {
+        headers: {
+            Authorization: `Bearer `,
+            ConsistencyLevel: "eventual",
+        },
+    };
+
+    async getHeadersConfig() {
+        const token = await this.getAccessToken();
+        this.headersConfig.headers.Authorization += token;
+        return this.headersConfig;
+    }
+
 }
