@@ -1,9 +1,11 @@
 import axios, { AxiosResponse } from "axios";
 
 export class MsGraphUtils {
-   async getAccessToken(): Promise<any> {
+  async getAccessToken(): Promise<any> {
     return new Promise<AxiosResponse>(async (resolve, reject) => {
       try {
+        console.log(process.env.TENANT_ID);
+
         const msResponse = await axios.post(
           `https://login.microsoftonline.com/${process.env.TENANT_ID}/oauth2/v2.0/token`,
           {
@@ -20,17 +22,17 @@ export class MsGraphUtils {
       }
     });
   }
-     headersConfig = {
-        headers: {
-            Authorization: `Bearer `,
-            ConsistencyLevel: "eventual",
-        },
-    };
+  headersConfig = {
+    headers: {
+      Authorization: `Bearer `,
+      ConsistencyLevel: "eventual",
+    },
+  };
 
-    async getHeadersConfig() {
-        const token = await this.getAccessToken();
-        this.headersConfig.headers.Authorization += token;
-        return this.headersConfig;
-    }
-
+  async getHeadersConfig() {
+    const token = await this.getAccessToken();
+    console.log("token", token);
+    this.headersConfig.headers.Authorization = `Bearer ${token}`;
+    return this.headersConfig;
+  }
 }
