@@ -1,6 +1,6 @@
 export interface UpdateMeetingRoomDto {
   currentRoomData: {
-    id : string;
+    id: string;
     name?: string;
     description?: string;
     capacity?: number;

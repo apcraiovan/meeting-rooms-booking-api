@@ -9,20 +9,17 @@ import { MsGraphUtils } from "../../utils/msgraph/msgraph.utils";
 const msGraphUtils = new MsGraphUtils();
 
 export class MeetingRoomsService {
-  static headersConfig: any;
 
-  constructor() {
-    MeetingRoomsService.headersConfig = {
+    static headersConfig = {
       headers: {
         Authorization: `Bearer `,
         ConsistencyLevel: "eventual",
       },
     };
-  }
 
   static async getToken() {
     const token = await msGraphUtils.getAccessToken();
-    this.headersConfig.headers.Authorization = "Bearer " + token;
+    this.headersConfig.headers.Authorization += token;
   }
 
   async getMeetingRoomById(roomId: string){
