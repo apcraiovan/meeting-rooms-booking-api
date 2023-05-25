@@ -13,4 +13,16 @@ export class ParticipantsController {
       res.status(500).json("Internal Server Error...");
     }
   }
+
+  async getParticipant(req: Request, res: Response): Promise<void> {
+    try {
+      const participant = await participantService.getParticipant(
+        req.params._name
+      );
+      res.json(participant);
+    } catch (err) {
+      console.error(err);
+      res.status(500).json("Internal Server Error...");
+    }
+  }
 }

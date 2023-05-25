@@ -23,11 +23,25 @@ export class ParticipantService {
 
   async getAllParticipants() {
     try {
+      await ParticipantService.getToken();
       const participants = await axios.get(
         MS_GRAPH_PATH.USERS,
         ParticipantService.headersConfig
       );
       return participants ? participants.data : null;
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  async getParticipant(_name: string) {
+    try {
+      await ParticipantService.getToken();
+      const participant = await axios.get(
+        `https://graph.microsoft.com/v1.0/users?$search="displayName:${_name}"`,
+        ParticipantService.headersConfig
+      );
+      return participant ? participant.data : null;
     } catch (err) {
       console.error(err);
     }

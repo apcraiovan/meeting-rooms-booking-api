@@ -4,6 +4,9 @@ import bodyParser from "body-parser";
 import routerMsgraph from "./routes/msgraph.routes";
 
 const app: Application = express();
+const cors = require("cors");
+
+app.use(cors());
 
 // middleware
 app.use(bodyParser.json());
