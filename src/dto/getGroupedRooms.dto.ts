@@ -8,6 +8,7 @@ export interface GetRoomsGroupedDto {
     description: string;
     startTime: string;
     endTime: string;
+    participants: string[];
   }[];
 }
 export interface TransferMeetingsDto {
@@ -15,4 +16,5 @@ export interface TransferMeetingsDto {
   description: string;
   startTime: string;
   endTime: string;
+  participants: string[];
 }

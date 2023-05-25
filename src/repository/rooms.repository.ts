@@ -28,6 +28,7 @@ class RoomsRepository {
             description: meetdata.description,
             startTime: meetdata.startTime,
             endTime: meetdata.endTime,
+            participants: ["Liuba Cosmin", "Cristi Berzescu"],
           });
         }
       });
@@ -100,6 +101,7 @@ class RoomsRepository {
             description: meetdata.description,
             startTime: meetdata.startTime,
             endTime: meetdata.endTime,
+            participants: ["Liuba Cosmin", "Cristi Berzescu"],
           });
         }
       });
