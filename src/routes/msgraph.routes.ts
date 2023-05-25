@@ -13,6 +13,10 @@ routerMsgraph
   .route("/msgraph/participants/:countryCode")
   .get(participantsController.getAllParticipants);
 
+routerMsgraph
+  .route("/msgraph/participant/:_name")
+  .get(participantsController.getParticipant);
+
 routerMsgraph.get(
   "/msgraph/meetingrooms/:mailPatern",
   meetingRoomController.getAllMeetingRooms
@@ -21,7 +25,7 @@ routerMsgraph.get(
 routerMsgraph.get(
   "/msgraph/meetingroom/:meetingRoomId",
   meetingRoomController.getMeetingRoomById
-)
+);
 
 routerMsgraph
   .route("/msgraph/meetingrooms/")

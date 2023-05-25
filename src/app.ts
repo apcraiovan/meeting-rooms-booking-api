@@ -2,10 +2,11 @@ import express, { Application } from "express";
 import routerUser from "./routes/user.routes";
 import bodyParser from "body-parser";
 import routerMsgraph from "./routes/msgraph.routes";
-import dotenv from 'dotenv';
 
 const app: Application = express();
-dotenv.config(); // This should load the vars from .env file
+const cors = require("cors");
+
+app.use(cors());
 
 // middleware
 app.use(bodyParser.json());
