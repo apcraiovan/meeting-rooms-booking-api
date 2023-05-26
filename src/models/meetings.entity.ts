@@ -3,14 +3,14 @@ import {
   DataType,
   Model,
   Column,
-  BelongsToMany,
+  BelongsTo,
+  ForeignKey,
 } from "sequelize-typescript";
-import Participants from "./participants.entity";
-import Users from "./user.entity";
 import Rooms from "./rooms.entity";
+
 @Table
-class Meeting extends Model {
-  @BelongsToMany(() => Users, { as: "meetId", through: () => Participants })
+class Meetings extends Model {
+  @BelongsTo(() => Rooms, { as: "meetings" })
   @Column({
     type: DataType.STRING,
     allowNull: false,
@@ -18,7 +18,7 @@ class Meeting extends Model {
   name!: string;
 
   @Column({
-    type: DataType.STRING,
+    type: DataType.TEXT,
     allowNull: false,
   })
   description!: string;
@@ -35,6 +35,7 @@ class Meeting extends Model {
   })
   endTime!: Date;
 
+  @ForeignKey(() => Rooms)
   @Column({
     type: DataType.INTEGER,
     allowNull: false,
@@ -42,7 +43,4 @@ class Meeting extends Model {
   roomId!: number;
 }
 
-//Rooms.hasMany(Meeting, {foreignKey: "RoomID"});
-//Meetings.belongsTo(Rooms);
-
-export default Meeting;
+export default Meetings;

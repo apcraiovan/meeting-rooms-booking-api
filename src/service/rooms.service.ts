@@ -1,36 +1,43 @@
 import { Model } from "sequelize";
 import RoomsRepository from "../repository/rooms.repository";
 import { RoomAttributesDto } from "../dto/getAllRooms.dto";
-const RoomsR = new RoomsRepository();
+import { GetRoomsGroupedDto } from "../dto/getGroupedRooms.dto";
+
+const roomsRepository = new RoomsRepository();
+
 export class RoomsService {
-  async GeetAllRooms(): Promise<Model<RoomAttributesDto>[]> {
-    const data = await RoomsR.getAllRooms();
+  async getAllRooms(): Promise<Model<RoomAttributesDto>[]> {
+    const data = await roomsRepository.getAllRooms();
     return data;
   }
 
-  async GetRoomById(id: number): Promise<Model<RoomAttributesDto> | null> {
-    const room = await RoomsR.getRoomById(id);
-    return room;
+  async getRoomById(id: number): Promise<GetRoomsGroupedDto | null> {
+    const room = await roomsRepository.getRoomById(id);
+    return room[0];
   }
 
-  async DeleteRoomById(id: number): Promise<boolean> {
-    const data = await RoomsR.deleteRoomById(id);
+  async deleteRoomById(id: number): Promise<boolean> {
+    const data = await roomsRepository.deleteRoomById(id);
     return data;
   }
 
-  async CreateRoom(
+  async createRoom(
     room: RoomAttributesDto
   ): Promise<Model<RoomAttributesDto> | null> {
-    const createdRoom = await RoomsR.createRoom(room);
+    const createdRoom = await roomsRepository.createRoom(room);
     return createdRoom;
   }
 
-  async UpdateRoomById(
+  async updateRoomById(
     id: number,
     room: RoomAttributesDto
   ): Promise<Model<RoomAttributesDto> | null> {
-    const updatedRoom = await RoomsR.updateRoomById(id, room);
+    const updatedRoom = await roomsRepository.updateRoomById(id, room);
     return updatedRoom;
   }
-}
 
+  async getAllRoomsAndMeetings(): Promise<GetRoomsGroupedDto[]> {
+    const data = await roomsRepository.getAllRoomsAndMeetings();
+    return data;
+  }
+}

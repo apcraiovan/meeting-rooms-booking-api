@@ -1,20 +1,46 @@
 import { Model } from "sequelize-typescript";
 import Rooms from "../models/rooms.entity";
 import { RoomAttributesDto } from "../dto/getAllRooms.dto";
+import { GetRoomsGroupedDto } from "../dto/getGroupedRooms.dto";
+import Meetings from "../models/meetings.entity";
+import { TransferMeetingsDto } from "../dto/getGroupedRooms.dto";
 class RoomsRepository {
   async getAllRooms(): Promise<Model<RoomAttributesDto>[]> {
     const rooms = await Rooms.findAll();
     return rooms;
   }
 
-  async getRoomById(id: number): Promise<Rooms | null> {
-    try {
-      const room = await Rooms.findByPk(id);
-      return room || null;
-    } catch (error) {
-      console.log(error);
-      return null;
-    }
+  async getRoomById(id: number): Promise<GetRoomsGroupedDto[]> {
+    const today = new Date();
+    const data = (await Rooms.findAll({
+      where: { id: id },
+      include: {
+        model: Meetings,
+      },
+    })) as unknown as GetRoomsGroupedDto[];
+    const dto = data.map((e) => {
+      let meetings: TransferMeetingsDto[] = [];
+      e.meetings.forEach((meetdata) => {
+        const dbdate = new Date(meetdata.startTime);
+        if (dbdate.toDateString() == today.toDateString()) {
+          meetings.push({
+            name: meetdata.name,
+            description: meetdata.description,
+            startTime: meetdata.startTime,
+            endTime: meetdata.endTime,
+            participants: ["Liuba Cosmin", "Cristi Berzescu"],
+          });
+        }
+      });
+      return {
+        id: e.id,
+        name: e.name,
+        capacity: e.capacity,
+        description: e.description,
+        meetings: meetings,
+      };
+    });
+    return dto;
   }
 
   async deleteRoomById(id: number): Promise<boolean> {
@@ -57,6 +83,37 @@ class RoomsRepository {
       console.log(error);
       return null;
     }
+  }
+  async getAllRoomsAndMeetings(): Promise<GetRoomsGroupedDto[]> {
+    const today = new Date();
+    const data = (await Rooms.findAll({
+      include: {
+        model: Meetings,
+      },
+    })) as unknown as GetRoomsGroupedDto[];
+    const dto = data.map((e) => {
+      let meetings: TransferMeetingsDto[] = [];
+      e.meetings.forEach((meetdata) => {
+        const dbdate = new Date(meetdata.startTime);
+        if (dbdate.toDateString() == today.toDateString()) {
+          meetings.push({
+            name: meetdata.name,
+            description: meetdata.description,
+            startTime: meetdata.startTime,
+            endTime: meetdata.endTime,
+            participants: ["Liuba Cosmin", "Cristi Berzescu"],
+          });
+        }
+      });
+      return {
+        id: e.id,
+        name: e.name,
+        capacity: e.capacity,
+        description: e.description,
+        meetings: meetings,
+      };
+    });
+    return dto;
   }
 }
 
