@@ -1,5 +1,9 @@
 export interface Event {
-  end: {
+  id : string,
+  body: {
+    contentType: string;
+    content : string;
+  };  end: {
     dateTime: string;
     timeZone: string;
   };
@@ -13,10 +17,4 @@ export interface Event {
       address: string;
     };
   }[];
-  organizer: {
-    emailAddress: {
-      name: string;
-      address: string;
-    };
-  };
 }

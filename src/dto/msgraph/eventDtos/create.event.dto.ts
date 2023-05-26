@@ -1,7 +1,16 @@
 export interface CreateEventDto {
   name: string;
-  description: string;
-  startTime: Date;
-  endTime: Date;
+  description: {
+    contentType: string;
+    content : string;
+  };
+  end: {
+    dateTime: string;
+    timeZone: string;
+  };
+  start: {
+    dateTime: string;
+    timeZone: string;
+  };
   attendees: { emailAddress: { address: string } }[];
 }

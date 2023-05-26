@@ -14,6 +14,15 @@ export class EventController {
       res.status(500).json("Internal Server Error...");
     }
   }
+  async  getEventsByRoom(req: Request, res: Response): Promise<void> {
+    try {
+      const events = await eventsService.getEventsByRoom(req.params.meetingRoomId);
+      res.json(events);
+    } catch (err) {
+      console.error(err);
+      res.status(500).json("Internal Server Error...");
+    }
+  }
   async createNewEvent(req: Request, res: Response): Promise<void> {
     try {
       const createEventDto: CreateEventDto = req.body;

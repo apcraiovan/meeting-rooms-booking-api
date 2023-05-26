@@ -1,7 +1,7 @@
-import { Router } from "express";
-import { EventController } from "../controller/msgraphController/events.controller";
-import { MeetingRoomsController } from "../controller/msgraphController/meetingRoom.controller";
-import { ParticipantsController } from "../controller/msgraphController/participants.controller";
+import {Router} from "express";
+import {EventController} from "../controller/msgraphController/events.controller";
+import {MeetingRoomsController} from "../controller/msgraphController/meetingRoom.controller";
+import {ParticipantsController} from "../controller/msgraphController/participants.controller";
 
 const routerMsgraph = Router();
 
@@ -10,33 +10,34 @@ const participantsController = new ParticipantsController();
 const meetingRoomController = new MeetingRoomsController();
 
 routerMsgraph
-  .route("/msgraph/participants/:countryCode")
-  .get(participantsController.getAllParticipants);
+    .route("/msgraph/participants/:countryCode")
+    .get(participantsController.getAllParticipants);
 
 routerMsgraph
-  .route("/msgraph/participant/:_name")
-  .get(participantsController.getParticipant);
+    .route("/msgraph/participant/:nameToSearch")
+    .get(participantsController.getParticipant);
 
 routerMsgraph.get(
-  "/msgraph/meetingrooms/:mailPatern",
-  meetingRoomController.getAllMeetingRooms
+    "/msgraph/meetingrooms/:mailPatern",
+    meetingRoomController.getAllMeetingRooms
 );
 
 routerMsgraph.get(
-  "/msgraph/meetingroom/:meetingRoomId",
-  meetingRoomController.getMeetingRoomById
+    "/msgraph/meetingroom/:meetingRoomId",
+    meetingRoomController.getMeetingRoomById
 );
 
 routerMsgraph
-  .route("/msgraph/meetingrooms/")
-  .post(meetingRoomController.createNewMeetingRoom)
-  .put(meetingRoomController.updateMeetingRoom)
-  .delete(meetingRoomController.deleteMeetingRoom);
+    .route("/msgraph/meetingrooms/")
+    .post(meetingRoomController.createNewMeetingRoom)
+    .put(meetingRoomController.updateMeetingRoom)
+    .delete(meetingRoomController.deleteMeetingRoom);
 
 routerMsgraph
-  .route("/msgraph/events")
-  .get(eventController.getAllEvents)
-  .post(eventController.createNewEvent);
+    .get("/msgraph/events/:meetingRoomId",eventController.getEventsByRoom )
+
+routerMsgraph
+    .post("/msgraph/events", eventController.createNewEvent);
 
 export default routerMsgraph;
 

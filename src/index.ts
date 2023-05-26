@@ -1,7 +1,5 @@
 import app from './app';
 // import { connectToDatabase, sequelize } from './config/mysql.config';
-import { User } from './models/user.entity';
-
 
 
 const PORT = process.env.PORT || 4000;

@@ -1,5 +1,4 @@
 import express, { Application } from "express";
-import routerUser from "./routes/user.routes";
 import bodyParser from "body-parser";
 import routerMsgraph from "./routes/msgraph.routes";
 
