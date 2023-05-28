@@ -1,4 +1,5 @@
 export interface Event {
+  subject:string;
   id : string,
   body: {
     contentType: string;

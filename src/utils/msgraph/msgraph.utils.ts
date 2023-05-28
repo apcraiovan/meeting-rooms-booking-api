@@ -27,6 +27,7 @@ export class MsGraphUtils {
         headers: {
             Authorization: `Bearer `,
             ConsistencyLevel: "eventual",
+            "Content-Type":"application/json",
         },
     };
 

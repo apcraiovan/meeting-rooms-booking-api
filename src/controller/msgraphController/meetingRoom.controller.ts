@@ -10,8 +10,14 @@ export class MeetingRoomsController {
 
   async getMeetingRoomById(req:Request, res:Response): Promise<void> {
     try{
-      const meetingRoom = await meetingRoomsService.getMeetingRoomById(req.params.meetingRoomId);
-      res.json(meetingRoom?.data)
+      console.log("ASDASDASD")
+      const roomId = req.params.meetingRoomId;
+      if(roomId) {
+        const meetingRoom = await meetingRoomsService.getMeetingRoomById(roomId);
+        res.json(meetingRoom?.data)
+      }else{
+        req.params.mailPatern = "TM";
+      }
     }
     catch(err){
       console.error(err);

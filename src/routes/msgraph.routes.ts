@@ -23,7 +23,7 @@ routerMsgraph.get(
 );
 
 routerMsgraph.get(
-    "/msgraph/meetingroom/:meetingRoomId",
+    "/msgraph/meetingroom/:meetingRoomId?",
     meetingRoomController.getMeetingRoomById
 );
 

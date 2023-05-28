@@ -21,8 +21,9 @@ export class EventService {
 
     static parseEvent(eventToParse : Event) : CreateEventDto {
         return {
-            name: eventToParse.id,
-            description: eventToParse.body,
+            subject: eventToParse.subject,
+            id: eventToParse.id,
+            body: eventToParse.body,
             attendees: eventToParse.attendees,
             end: eventToParse.end,
             start: eventToParse.start
@@ -42,8 +43,9 @@ export class EventService {
         }
     }
     async createNewEvent(createEventDto: CreateEventDto): Promise<Event | Error> {
+
         try {
-            const newEvent = await axios.post(MS_GRAPH_BASIC_PATHS.EVENTS, createEventDto, await msGraphUtils.getHeadersConfig());
+            const newEvent = await axios.post(MS_GRAPH_BASIC_PATHS.USERS + createEventDto.id + "/calendar/events", createEventDto, await msGraphUtils.getHeadersConfig());
             return newEvent.data;
         } catch (err) {
             console.error(err);

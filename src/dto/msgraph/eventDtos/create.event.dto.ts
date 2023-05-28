@@ -1,6 +1,7 @@
 export interface CreateEventDto {
-  name: string;
-  description: {
+  subject:string;
+  id: string;
+  body: {
     contentType: string;
     content : string;
   };
@@ -12,5 +13,5 @@ export interface CreateEventDto {
     dateTime: string;
     timeZone: string;
   };
-  attendees: { emailAddress: { address: string } }[];
+  attendees: { emailAddress: { name: string, address: string } }[];
 }
