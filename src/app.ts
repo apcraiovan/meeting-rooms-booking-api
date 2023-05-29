@@ -2,7 +2,10 @@ import express, { Express } from "express";
 const router = require("./routes/routes");
 const cors = require("cors");
 
-const app: Express = express();
+const cors = require("cors");
+const dotenv = require("dotenv");
+dotenv.config();
+const app: Application = express();
 
 app.use(
   cors({
