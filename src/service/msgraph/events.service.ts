@@ -32,7 +32,6 @@ export class EventService {
 
     async getEventsByRoom(roomId: string) : Promise<CreateEventDto[] | Error> {
         try {
-            console.log(roomId)
             const events = await axios.get(`${MS_GRAPH_BASIC_PATHS.USERS}${roomId}/events`, await msGraphUtils.getHeadersConfig());
             let parsedEvents : CreateEventDto[] = [];
             events.data.value.forEach((event : Event) => { parsedEvents.push(EventService.parseEvent(event))})
@@ -43,7 +42,6 @@ export class EventService {
         }
     }
     async createNewEvent(createEventDto: CreateEventDto): Promise<Event | Error> {
-
         try {
             const newEvent = await axios.post(MS_GRAPH_BASIC_PATHS.USERS + createEventDto.id + "/calendar/events", createEventDto, await msGraphUtils.getHeadersConfig());
             return newEvent.data;

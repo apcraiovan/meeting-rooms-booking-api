@@ -11,6 +11,19 @@ const msGraphUtils = new MsGraphUtils();
 export class MeetingRoomsService {
 
 
+    async getEventForMeetingRoom(roomId : string, eventId : string){
+        try {
+            const headersConfig = await msGraphUtils.getHeadersConfig();
+            const meetingRooms = await axios.get(
+                MS_GRAPH_BASIC_PATHS.USERS + roomId+"/events/"+eventId,
+                headersConfig
+            );
+            if (meetingRooms !== undefined) return meetingRooms.data;
+        } catch (err) {
+            console.error(err);
+        }
+    }
+
     async getMeetingRoomById(roomId: string) {
         try {
             const headersConfig = await msGraphUtils.getHeadersConfig();
@@ -27,7 +40,6 @@ export class MeetingRoomsService {
     async getAllMeetingRooms(location: string) {
         try {
             const headersConfig = await msGraphUtils.getHeadersConfig();
-            console.log(location);
             const meetingRooms = await axios.get(
                 `https://graph.microsoft.com/v1.0/users?$count=true&$search="displayName:room"&$filter=startsWith(mail,'${location}')&$orderBy=displayName&$select=id,displayName,mail`,
                 headersConfig

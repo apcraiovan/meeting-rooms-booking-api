@@ -27,6 +27,10 @@ routerMsgraph.get(
     meetingRoomController.getMeetingRoomById
 );
 
+routerMsgraph.get(
+    "/msgraph/meetingroom/:meetingRoomId/event/:eventId",
+    meetingRoomController.getEventForMeetingRoom
+);
 routerMsgraph
     .route("/msgraph/meetingrooms/")
     .post(meetingRoomController.createNewMeetingRoom)
